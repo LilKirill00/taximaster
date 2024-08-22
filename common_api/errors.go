@@ -97,4 +97,5 @@ var (
 	ErrSystemEventNotActive = errors.New("common_api: Системное событие не активно")
 
 	ErrNoLicenseToUseWayBill = errors.New("common_api: Нет лицензии на использование путевых листов")
+	ErrWayBillNotFound       = errors.New("common_api: Не найден путевой лист")
 )
