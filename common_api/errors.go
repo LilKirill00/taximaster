@@ -45,6 +45,8 @@ var (
 	ErrUsersNotFound              = errors.New("common_api: Пользователи для отправки сообщения не найдены")
 	ErrOrderStateNotFound         = errors.New("common_api: Состояние заказа не найдено")
 	ErrOrderParameterNotFound     = errors.New("common_api: Параметр заказа не найден")
+	ErrWayBillNotFound            = errors.New("common_api: Не найден путевой лист")
+	ErrCrewGroupsNotFound         = errors.New("common_api: Группа экипажа не найдена")
 
 	ErrClientBlocked         = errors.New("common_api: Клиент заблокирован")
 	ErrCustomerClientBlocked = errors.New("common_api: Сотрудник клиента заблокирован")
@@ -97,5 +99,4 @@ var (
 	ErrSystemEventNotActive = errors.New("common_api: Системное событие не активно")
 
 	ErrNoLicenseToUseWayBill = errors.New("common_api: Нет лицензии на использование путевых листов")
-	ErrWayBillNotFound       = errors.New("common_api: Не найден путевой лист")
 )
