@@ -3,14 +3,12 @@ package common_api
 type (
 	GetClientGroupsListResponse struct {
 		// Список групп клиентов
-		ClientGroups []ClientGroup `json:"client_groups"`
-	}
-
-	ClientGroup struct {
-		// ИД группы клиентов
-		Id int `json:"id"`
-		// Название группы клиентов
-		Name string `json:"name"`
+		ClientGroups []struct {
+			// ИД группы клиентов
+			Id int `json:"id"`
+			// Название группы клиентов
+			Name string `json:"name"`
+		} `json:"client_groups"`
 	}
 )
 

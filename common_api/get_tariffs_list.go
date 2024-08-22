@@ -3,16 +3,14 @@ package common_api
 type (
 	GetTariffsListResponse struct {
 		// Список тарифов
-		Tariffs []Tariff `json:"tariffs"`
-	}
-
-	Tariff struct {
-		// ИД тарифа
-		Id int `json:"id"`
-		// Название тарифа
-		Name string `json:"name"`
-		// Активный тариф
-		IsActive bool `json:"is_active"`
+		Tariffs []struct {
+			// ИД тарифа
+			Id int `json:"id"`
+			// Название тарифа
+			Name string `json:"name"`
+			// Активный тариф
+			IsActive bool `json:"is_active"`
+		} `json:"tariffs"`
 	}
 )
 

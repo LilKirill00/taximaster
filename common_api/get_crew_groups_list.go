@@ -3,14 +3,12 @@ package common_api
 type (
 	GetCrewGroupsListResponse struct {
 		// Список групп экипажей
-		CrewGroups []CrewGroup `json:"crew_groups"`
-	}
-
-	CrewGroup struct {
-		// ИД группы экипажей
-		Id int `json:"id"`
-		// Название группы экипажей
-		Name string `json:"name"`
+		CrewGroups []struct {
+			// ИД группы экипажей
+			Id int `json:"id"`
+			// Название группы экипажей
+			Name string `json:"name"`
+		} `json:"crew_groups"`
 	}
 )
 

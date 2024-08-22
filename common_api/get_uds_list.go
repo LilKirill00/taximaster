@@ -3,14 +3,12 @@ package common_api
 type (
 	GetUdsListResponse struct {
 		// Список служб ЕДС
-		Uds []Ud `json:"uds"`
-	}
-
-	Ud struct {
-		// ИД службы ЕДС
-		Id int `json:"id"`
-		// Название службы ЕДС
-		Name string `json:"name"`
+		Uds []struct {
+			// ИД службы ЕДС
+			Id int `json:"id"`
+			// Название службы ЕДС
+			Name string `json:"name"`
+		} `json:"uds"`
 	}
 )
 
