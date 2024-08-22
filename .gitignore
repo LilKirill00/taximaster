@@ -1,1 +1,9 @@
+.idea/
+.unlock
+/enviroment
+/conf/*.conf
+.vscode
+/env
+/venv
+
 go.sum
