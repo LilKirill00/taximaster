@@ -9,7 +9,7 @@ type (
 		// Номер путевого листа (должен быть задан либо ИД либо номер)
 		WayBillNumber string `json:"way_bill_number" validate:"required"`
 		// Тип осмотра ("med/tech")
-		Kind string `json:"kind" validate:"required"`
+		Kind string `json:"kind" validate:"required,eq=med|eq=tech"`
 		// Имя пользователя
 		UserName string `json:"user_name" validate:"required"`
 		// Результат осмотра
