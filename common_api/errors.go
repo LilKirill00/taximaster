@@ -95,4 +95,6 @@ var (
 	ErrPystemEventBadType   = errors.New("common_api: У системного события тип не \"По запросу CommonAPI\"")
 	ErrSystemEventNotFound  = errors.New("common_api: Системное событие не найдено")
 	ErrSystemEventNotActive = errors.New("common_api: Системное событие не активно")
+
+	ErrNoLicenseToUseWayBill = errors.New("common_api: Нет лицензии на использование путевых листов")
 )
