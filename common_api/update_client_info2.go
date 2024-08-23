@@ -41,12 +41,10 @@ type (
 )
 
 // Изменение информации по клиенту 2
-func (cl *Client) UpdateClientInfo2(req UpdateClientInfo2Request) (EmptyResponse, error) {
-	var response = EmptyResponse{}
-
-	err := validator.Validate(req)
+func (cl *Client) UpdateClientInfo2(req UpdateClientInfo2Request) (response EmptyResponse, err error) {
+	err = validator.Validate(req)
 	if err != nil {
-		return response, err
+		return
 	}
 
 	/*
@@ -57,7 +55,7 @@ func (cl *Client) UpdateClientInfo2(req UpdateClientInfo2Request) (EmptyResponse
 		104 Клиент указанный в качестве родителя с ИД=PARENT_ID не найден
 		105 Основной телефон может быть только один
 		106 Клиент должен иметь основной телефон
-		107 Атрибут не найден
+		107 Атрибут с ИД=ID не найден
 		108 Атрибут с ИД=ID не может быть привязан к клиенту
 		109 Пароль клиента не соответствует политике паролей
 	*/
@@ -76,5 +74,5 @@ func (cl *Client) UpdateClientInfo2(req UpdateClientInfo2Request) (EmptyResponse
 
 	err = cl.PostJson("update_client_info2", e, req, &response)
 
-	return response, err
+	return
 }
