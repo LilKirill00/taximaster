@@ -11,6 +11,8 @@ type (
 		// Нужно ли возвращать экипажи не на линии
 		// По умолчанию возвращаются только экипажи на линии
 		NotWorkingCrews bool `validate:"omitempty"`
+		// Список возвращаемых полей через запятую
+		Fields string `validate:"fields"`
 	}
 
 	GetCrewsInfoResponse struct {
@@ -20,10 +22,8 @@ type (
 )
 
 // Запрос информации об экипажах
-func (cl *Client) GetCrewsInfo(req GetCrewsInfoRequest) (GetCrewsInfoResponse, error) {
-	var response = GetCrewsInfoResponse{}
-
-	err := validator.Validate(req)
+func (cl *Client) GetCrewsInfo(req GetCrewsInfoRequest) (response GetCrewsInfoResponse, err error) {
+	err = validator.Validate(req)
 	if err != nil {
 		return response, err
 	}
@@ -32,8 +32,11 @@ func (cl *Client) GetCrewsInfo(req GetCrewsInfoRequest) (GetCrewsInfoResponse, e
 	if req.NotWorkingCrews {
 		v.Add("not_working_crews", "true")
 	}
+	if req.Fields != "" {
+		v.Add("fields", req.Fields)
+	}
 
-	err = cl.Get("get_crews_info", errorMap{}, v, &response)
+	err = cl.Get("get_crews_info", nil, v, &response)
 
 	return response, err
 }
