@@ -47,6 +47,8 @@ var (
 	ErrOrderParameterNotFound     = errors.New("common_api: Параметр заказа не найден")
 	ErrWayBillNotFound            = errors.New("common_api: Не найден путевой лист")
 	ErrCrewGroupsNotFound         = errors.New("common_api: Группа экипажа не найдена")
+	ErrSourceNotFound             = errors.New("common_api: Адрес подачи не распознан")
+	ErrDestNotFound               = errors.New("common_api: Адрес назначения не распознан")
 
 	ErrClientBlocked         = errors.New("common_api: Клиент заблокирован")
 	ErrCustomerClientBlocked = errors.New("common_api: Сотрудник клиента заблокирован")
