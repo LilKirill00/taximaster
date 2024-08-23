@@ -68,30 +68,16 @@ type (
 )
 
 // Запрос адресов, содержащих нужную строку 2
-func (cl *Client) GetAddressesLike2(req GetAddressesLike2Request) (GetAddressesLike2Response, error) {
-	var response = GetAddressesLike2Response{}
-
-	err := validator.Validate(req)
+func (cl *Client) GetAddressesLike2(req GetAddressesLike2Request) (response GetAddressesLike2Response, err error) {
+	err = validator.Validate(req)
 	if err != nil {
-		return response, err
+		return
 	}
 
 	v := url.Values{}
-	if req.GetStreets {
-		v.Add("get_streets", "true")
-	} else {
-		v.Add("get_streets", "false")
-	}
-	if req.GetPoints {
-		v.Add("get_points", "true")
-	} else {
-		v.Add("get_points", "false")
-	}
-	if req.GetHouses {
-		v.Add("get_houses", "true")
-	} else {
-		v.Add("get_houses", "false")
-	}
+	v.Add("get_streets", strconv.FormatBool(req.GetStreets))
+	v.Add("get_points", strconv.FormatBool(req.GetPoints))
+	v.Add("get_houses", strconv.FormatBool(req.GetHouses))
 	v.Add("address", req.Address)
 	if req.City != "" {
 		v.Add("city", req.City)
@@ -100,11 +86,7 @@ func (cl *Client) GetAddressesLike2(req GetAddressesLike2Request) (GetAddressesL
 		v.Add("max_addresses_count", strconv.Itoa(req.MaxAddressesCount))
 	}
 	if req.SearchInTm != nil {
-		if *req.SearchInTm {
-			v.Add("search_in_tm", "true")
-		} else {
-			v.Add("search_in_tm", "false")
-		}
+		v.Add("get_houses", strconv.FormatBool(*req.SearchInTm))
 	}
 	if req.SearchInYandex {
 		v.Add("search_in_yandex", "true")
@@ -133,5 +115,5 @@ func (cl *Client) GetAddressesLike2(req GetAddressesLike2Request) (GetAddressesL
 
 	err = cl.Get("get_addresses_like2", e, v, &response)
 
-	return response, err
+	return
 }
