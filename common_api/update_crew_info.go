@@ -15,7 +15,6 @@ type (
 		CrewGroupID *int `json:"crew_group_id,omitempty" validate:"omitempty"`
 		// Позывной экипажа
 		Code *string `json:"code,omitempty" validate:"omitempty"`
-		Name *string `json:"name,omitempty" validate:"omitempty"`
 		// Сумма, списываемая за смену
 		WorkShiftSum *float64 `json:"work_shift_sum,omitempty" validate:"omitempty"`
 		// Минимальный баланс, при котором можно выйти на смену
@@ -26,6 +25,8 @@ type (
 		HasLightHouse *bool `json:"has_light_house,omitempty" validate:"omitempty"`
 		// Наклейка
 		HasLabel *bool `json:"has_label,omitempty" validate:"omitempty"`
+		// GPS идентификатор экипажа
+		CrewGpsId *int `json:"crew_gps_id,omitempty" validate:"omitempty"`
 		// Запрет работы вне запланированных смен
 		UsePlanShifts *bool `json:"use_plan_shifts,omitempty" validate:"omitempty"`
 		// Массив параметров экипажа
@@ -36,12 +37,10 @@ type (
 )
 
 // Обновление информации об экипаже
-func (cl *Client) UpdateCrewInfo(req UpdateCrewInfoRequest) (EmptyResponse, error) {
-	var response = EmptyResponse{}
-
-	err := validator.Validate(req)
+func (cl *Client) UpdateCrewInfo(req UpdateCrewInfoRequest) (response EmptyResponse, err error) {
+	err = validator.Validate(req)
 	if err != nil {
-		return response, err
+		return
 	}
 
 	/*
@@ -67,5 +66,5 @@ func (cl *Client) UpdateCrewInfo(req UpdateCrewInfoRequest) (EmptyResponse, erro
 
 	err = cl.PostJson("update_crew_info", e, req, &response)
 
-	return response, err
+	return
 }
