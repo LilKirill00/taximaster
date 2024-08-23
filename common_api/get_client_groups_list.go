@@ -5,7 +5,7 @@ type (
 		// Список групп клиентов
 		ClientGroups []struct {
 			// ИД группы клиентов
-			Id int `json:"id"`
+			ID int `json:"id"`
 			// Название группы клиентов
 			Name string `json:"name"`
 		} `json:"client_groups"`

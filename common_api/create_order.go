@@ -18,11 +18,11 @@ type (
 		// Комментарий
 		Comment string `json:"comment,omitempty" validate:"omitempty"`
 		// ИД группы экипажей
-		CrewGroupId int `json:"crew_group_id,omitempty" validate:"omitempty"`
+		CrewGroupID int `json:"crew_group_id,omitempty" validate:"omitempty"`
 		// ИД службы ЕДС
-		UdsId int `json:"uds_id,omitempty" validate:"omitempty"`
+		UdsID int `json:"uds_id,omitempty" validate:"omitempty"`
 		// ИД тарифа
-		TariffId int `json:"tariff_id,omitempty" validate:"omitempty"`
+		TariffID int `json:"tariff_id,omitempty" validate:"omitempty"`
 		// Предварительный заказ
 		IsPrior bool `json:"is_prior,omitempty" validate:"omitempty"`
 		// Долгота адреса подачи
@@ -37,7 +37,7 @@ type (
 
 	CreateOrderResponse struct {
 		// ИД созданного заказа
-		OrderId int `json:"order_id"`
+		OrderID int `json:"order_id"`
 	}
 )
 

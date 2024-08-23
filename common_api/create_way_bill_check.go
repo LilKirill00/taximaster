@@ -5,7 +5,7 @@ import "github.com/ros-tel/taximaster/validator"
 type (
 	CreateWayBillCheckRequest struct {
 		// ИД путевого листа (должен быть задан либо ИД либо номер)
-		WayBillId int `json:"way_bill_id" validate:"required"`
+		WayBillID int `json:"way_bill_id" validate:"required"`
 		// Номер путевого листа (должен быть задан либо ИД либо номер)
 		WayBillNumber string `json:"way_bill_number" validate:"required"`
 		// Тип осмотра ("med/tech")

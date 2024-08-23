@@ -5,7 +5,7 @@ type (
 		// Список групп экипажей
 		CrewGroups []struct {
 			// ИД группы экипажей
-			Id int `json:"id"`
+			ID int `json:"id"`
 			// Название группы экипажей
 			Name string `json:"name"`
 		} `json:"crew_groups"`

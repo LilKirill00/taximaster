@@ -5,7 +5,7 @@ type (
 		// Список услуг
 		Services []struct {
 			// ИД услуги
-			Id int `json:"id"`
+			ID int `json:"id"`
 			// Название услуги
 			Name string `json:"name"`
 			// Абсолютная сумма услуги, руб

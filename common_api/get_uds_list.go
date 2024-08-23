@@ -5,7 +5,7 @@ type (
 		// Список служб ЕДС
 		Uds []struct {
 			// ИД службы ЕДС
-			Id int `json:"id"`
+			ID int `json:"id"`
 			// Название службы ЕДС
 			Name string `json:"name"`
 		} `json:"uds"`

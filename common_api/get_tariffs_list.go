@@ -5,7 +5,7 @@ type (
 		// Список тарифов
 		Tariffs []struct {
 			// ИД тарифа
-			Id int `json:"id"`
+			ID int `json:"id"`
 			// Название тарифа
 			Name string `json:"name"`
 			// Активный тариф

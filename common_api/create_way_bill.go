@@ -9,9 +9,9 @@ type (
 		// Время завершения
 		FinishTime string `json:"finish_time" validate:"required, datetime=20060102150405"`
 		// ИД водителя
-		DriverId int `json:"driver_id" validate:"required"`
+		DriverID int `json:"driver_id" validate:"required"`
 		// ИД автомобиля
-		CarId int `json:"car_id" validate:"required"`
+		CarID int `json:"car_id" validate:"required"`
 
 		// Номер путевого листа
 		Number string `json:"number,omitempty" validate:"omitempty"`
@@ -21,7 +21,7 @@ type (
 
 	CreateWayBillResponse struct {
 		// ИД созданного путевого листа
-		WayBillId int `json:"way_bill_id"`
+		WayBillID int `json:"way_bill_id"`
 	}
 )
 

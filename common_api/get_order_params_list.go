@@ -5,7 +5,7 @@ type (
 		// Список параметров заказа
 		OrderParams []struct {
 			// ИД параметра
-			Id int `json:"id"`
+			ID int `json:"id"`
 			// Название параметра
 			Name string `json:"name"`
 			// Абсолютная сумма параметра, руб

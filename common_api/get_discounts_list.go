@@ -5,7 +5,7 @@ type (
 		// Список скидок
 		Discounts []struct {
 			// ИД скидки
-			Id int `json:"id"`
+			ID int `json:"id"`
 			// Название скидки
 			Name string `json:"name"`
 			// Абсолютная сумма скидки, руб
