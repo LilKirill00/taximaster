@@ -13,16 +13,12 @@ type (
 		Mark *string `json:"mark,omitempty" validate:"omitempty"`
 		// Цвет
 		Color *string `json:"color,omitempty" validate:"omitempty"`
+		// Государственный номер
+		GosNumber *string `json:"gos_number,omitempty" validate:"omitempty"`
 		// Модель
 		Model *string `json:"model,omitempty" validate:"omitempty"`
 		// Краткое название
 		ShortName *string `json:"short_name,omitempty" validate:"omitempty"`
-		// Государственный номер
-		GosNumber *string `json:"gos_number,omitempty" validate:"omitempty"`
-		// ИД службы ЕДС
-		UdsID *int `json:"uds_id,omitempty" validate:"omitempty"`
-		// Фотография автомобиля
-		CarPhoto *string `json:"car_photo,omitempty" validate:"omitempty,base64"`
 		// Год выпуска
 		ProductionYear *int `json:"production_year,omitempty" validate:"omitempty"`
 		// Класс автомобиля (A, B, C, ...)
@@ -37,24 +33,26 @@ type (
 		Permit *string `json:"permit,omitempty" validate:"omitempty"`
 		// Описание
 		Comment *string `json:"comment,omitempty" validate:"omitempty"`
-		// Автомобиль заблокирован
-		IsLocked *bool `json:"is_locked,omitempty" validate:"omitempty"`
-		// Причина блокировки
-		LockDescription *string `json:"lock_description,omitempty" validate:"omitempty"`
 		// Массив параметров автомобиля
 		OrderParams *[]int `json:"order_params,omitempty" validate:"omitempty"`
 		// Массив значений атрибутов
 		AttributeValues *[]AttributeValue `json:"attribute_values,omitempty" validate:"omitempty"`
+		// Автомобиль заблокирован
+		IsLocked *bool `json:"is_locked,omitempty" validate:"omitempty"`
+		// Причина блокировки
+		LockDescription *string `json:"lock_description,omitempty" validate:"omitempty"`
+		// ИД службы ЕДС
+		UdsID *int `json:"uds_id,omitempty" validate:"omitempty"`
+		// Фотография автомобиля
+		CarPhoto *string `json:"car_photo,omitempty" validate:"omitempty,base64"`
 	}
 )
 
 // Обновить информацию об автомобиле
-func (cl *Client) UpdateCarInfo(req UpdateCarInfoRequest) (EmptyResponse, error) {
-	var response = EmptyResponse{}
-
-	err := validator.Validate(req)
+func (cl *Client) UpdateCarInfo(req UpdateCarInfoRequest) (response EmptyResponse, err error) {
+	err = validator.Validate(req)
 	if err != nil {
-		return response, err
+		return
 	}
 
 	/*
@@ -72,5 +70,5 @@ func (cl *Client) UpdateCarInfo(req UpdateCarInfoRequest) (EmptyResponse, error)
 
 	err = cl.PostJson("update_car_info", e, req, &response)
 
-	return response, err
+	return
 }
