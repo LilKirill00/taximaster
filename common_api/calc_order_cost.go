@@ -3,6 +3,7 @@ package common_api
 import (
 	"net/url"
 	"strconv"
+	"strings"
 
 	"github.com/ros-tel/taximaster/validator"
 )
@@ -46,10 +47,10 @@ type (
 		IsPrize bool `json:"is_prize,omitempty" validate:"omitempty"`
 		// Обратный путь за городом
 		BackWay bool `json:"back_way,omitempty" validate:"omitempty"`
-		// Список ИД услуг через точку с запятой, пример: «1;2;3» Устарело. Рекомендуется использовать параметр order_params.
-		Services string `json:"services,omitempty" validate:"omitempty"`
-		// Список ИД параметров заказа через точку с запятой, пример: «1;2;3»
-		OrderParams string `json:"order_params,omitempty" validate:"omitempty"`
+		// Список ИД услуг, пример: []int{1, 2, 3} Устарело. Рекомендуется использовать параметр order_params.
+		Services []int `json:"services,omitempty" validate:"omitempty"`
+		// Список ИД параметров заказа, пример: []int{1, 2, 3}
+		OrderParams []int `json:"order_params,omitempty" validate:"omitempty"`
 		// Признак безналичного заказа
 		Cashless bool `json:"cashless,omitempty" validate:"omitempty"`
 	}
@@ -130,11 +131,23 @@ func (cl *Client) CalcOrderCost(req CalcOrderCostRequest) (response CalcOrderCos
 	if req.BackWay {
 		v.Add("back_way", "true")
 	}
-	if req.Services != "" {
-		v.Add("services", req.Services)
+	if req.Services != nil {
+		stringSlice := make([]string, len(req.Services))
+
+		for i, num := range req.Services {
+			stringSlice[i] = strconv.Itoa(num)
+		}
+
+		v.Add("services", strings.Join(stringSlice, ";"))
 	}
-	if req.OrderParams != "" {
-		v.Add("order_params", req.OrderParams)
+	if req.OrderParams != nil {
+		stringSlice := make([]string, len(req.OrderParams))
+
+		for i, num := range req.Services {
+			stringSlice[i] = strconv.Itoa(num)
+		}
+
+		v.Add("order_params", strings.Join(stringSlice, ";"))
 	}
 	if req.Cashless {
 		v.Add("cashless", "true")
