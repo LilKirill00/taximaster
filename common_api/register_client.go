@@ -46,12 +46,10 @@ type (
 )
 
 // Регистрация клиента
-func (cl *Client) RegisterClient(req RegisterClientRequest) (RegisterClientResponse, error) {
-	var response = RegisterClientResponse{}
-
-	err := validator.Validate(req)
+func (cl *Client) RegisterClient(req RegisterClientRequest) (response RegisterClientResponse, err error) {
+	err = validator.Validate(req)
 	if err != nil {
-		return response, err
+		return
 	}
 
 	v := url.Values{}
@@ -92,15 +90,17 @@ func (cl *Client) RegisterClient(req RegisterClientRequest) (RegisterClientRespo
 		101 Клиент с логином=LOGIN уже существует
 		102 Группа клиента с ИД=CLIENT_GROUP не найдена
 		103 Клиент указанный в качестве родителя с ИД=PARENT_ID не найден
+		109	Пароль клиента не соответствует политике паролей
 	*/
 	e := errorMap{
 		100: ErrClientConflictByPhone,
 		101: ErrClientExistsWithLogin,
 		102: ErrClientGroupNotFound,
 		103: ErrParentClientNotFound,
+		109: ErrPasswordDoesNotComplyWithPasswordPolicy,
 	}
 
 	err = cl.Post("register_client", e, v, &response)
 
-	return response, err
+	return
 }
