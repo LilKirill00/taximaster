@@ -14,7 +14,7 @@ type (
 		SourceTime string `json:"source_time" validate:"required,datetime=20060102150405"`
 
 		// Смещения относительно серверного времени
-		ServerTimeOffset int `json:"server_time_offset" validate:"omitempty"`
+		ServerTimeOffset int `json:"server_time_offset,omitempty" validate:"omitempty"`
 		// Пассажир
 		Passenger string `json:"passenger,omitempty" validate:"omitempty"`
 		// Телефон для отзвона
