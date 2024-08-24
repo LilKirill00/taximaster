@@ -51,7 +51,8 @@ var (
 	ErrDestNotFound                = errors.New("common_api: Адрес назначения не распознан")
 	ErrPlanShiftNotFound           = errors.New("common_api: Запланированная смена не найдена")
 	ErrReservationTypeNotFound     = errors.New("common_api: Не найден тип резервирования")
-	ErrInaccessibilityTypeNotFound = errors.New("common_api: 	Не найден тип недоступности")
+	ErrInaccessibilityTypeNotFound = errors.New("common_api: Не найден тип недоступности")
+	ErrFixedDriverShiftNotFound    = errors.New("common_api: Фиксированная смена водителя не найдена")
 
 	ErrClientBlocked         = errors.New("common_api: Клиент заблокирован")
 	ErrCustomerClientBlocked = errors.New("common_api: Сотрудник клиента заблокирован")
