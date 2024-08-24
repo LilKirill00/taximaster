@@ -49,6 +49,7 @@ var (
 	ErrCrewGroupsNotFound         = errors.New("common_api: Группа экипажа не найдена")
 	ErrSourceNotFound             = errors.New("common_api: Адрес подачи не распознан")
 	ErrDestNotFound               = errors.New("common_api: Адрес назначения не распознан")
+	ErrPlanShiftNotFound          = errors.New("common_api: Запланированная смена не найдена")
 
 	ErrClientBlocked         = errors.New("common_api: Клиент заблокирован")
 	ErrCustomerClientBlocked = errors.New("common_api: Сотрудник клиента заблокирован")
@@ -56,6 +57,7 @@ var (
 	ErrCashPaymentNotAllowed     = errors.New("common_api: Для клиента запрещена оплата заказа наличными. Клиент должен максимально использовать в заказе безналичную оплату (оплату с основного счета)")
 	ErrNegativeBalanceCashless   = errors.New("common_api: Отрицательный баланс на безналичном счете клиента в ТМ")
 	ErrInsufficientFundsCashless = errors.New("common_api: Недостаточно средств на безналичном счете клиента в ТМ")
+	ErrInsufficientFundsDriver   = errors.New("common_api: Недостаточно денег на счете водителя")
 
 	ErrClientwhoCanUseTheirOwnNotFound = errors.New("common_api: Не найден клиент, который может использовать собственный счет для оплаты заказов")
 
@@ -104,4 +106,11 @@ var (
 
 	ErrTimeRange   = errors.New("common_api: Время начала действия приоритета должно быть меньше времени окончания")
 	ErrTimeExpired = errors.New("common_api: Время действия приоритета уже истекло")
+
+	ErrDriverFiredOrBlocked                   = errors.New("common_api: Водитель уволен либо заблокирован")
+	ErrPlanShiftOutdated                      = errors.New("common_api: Запланированная смена устарела")
+	ErrCrewGroupsNotSuitable                  = errors.New("common_api: Не подходит группа экипажа")
+	ErrExceededMaxPurchases                   = errors.New("common_api: Превышено максимальное число покупок")
+	ErrDuplicatePurchases                     = errors.New("common_api: Повторная покупка")
+	ErrCrewNotAssignedAttributeForShiftAccess = errors.New("common_api: Экипажу не назначен атрибут для доступа к смене")
 )
