@@ -41,12 +41,10 @@ type (
 )
 
 // Проведение операции по клиенту
-func (cl *Client) CreateClientOperation(req CreateClientOperationRequest) (CreateClientOperationResponse, error) {
-	var response = CreateClientOperationResponse{}
-
-	err := validator.Validate(req)
+func (cl *Client) CreateClientOperation(req CreateClientOperationRequest) (response CreateClientOperationResponse, err error) {
+	err = validator.Validate(req)
 	if err != nil {
-		return response, err
+		return
 	}
 
 	v := url.Values{}
@@ -80,5 +78,5 @@ func (cl *Client) CreateClientOperation(req CreateClientOperationRequest) (Creat
 
 	err = cl.Post("create_client_operation", e, v, &response)
 
-	return response, err
+	return
 }
