@@ -1,22 +1,27 @@
 package common_api
 
-import "github.com/ros-tel/taximaster/validator"
+import (
+	"net/url"
+	"strconv"
+
+	"github.com/ros-tel/taximaster/validator"
+)
 
 type (
 	CreateWayBillRequest struct {
 		// Время начала
-		StartTime string `json:"start_time" validate:"required, datetime=20060102150405"`
+		StartTime string `validate:"required,datetime=20060102150405"`
 		// Время завершения
-		FinishTime string `json:"finish_time" validate:"required, datetime=20060102150405"`
+		FinishTime string `validate:"required,datetime=20060102150405"`
 		// ИД водителя
-		DriverID int `json:"driver_id" validate:"required"`
+		DriverID int `validate:"required"`
 		// ИД автомобиля
-		CarID int `json:"car_id" validate:"required"`
+		CarID int `validate:"required"`
 
 		// Номер путевого листа
-		Number string `json:"number,omitempty" validate:"omitempty"`
+		Number string `validate:"omitempty"`
 		// Комментарий
-		Comment string `json:"comment,omitempty" validate:"omitempty"`
+		Comment string `validate:"omitempty"`
 	}
 
 	CreateWayBillResponse struct {
@@ -32,6 +37,18 @@ func (cl *Client) CreateWayBill(req CreateWayBillRequest) (response CreateWayBil
 		return
 	}
 
+	v := url.Values{}
+	v.Add("start_time", req.StartTime)
+	v.Add("finish_time", req.FinishTime)
+	v.Add("driver_id", strconv.Itoa(req.DriverID))
+	v.Add("car_id", strconv.Itoa(req.CarID))
+	if req.Number != "" {
+		v.Add("number", req.Number)
+	}
+	if req.Comment != "" {
+		v.Add("comment", req.Comment)
+	}
+
 	/*
 		100 Нет лицензии на использование путевых листов
 		101 Не найден водитель
@@ -43,7 +60,7 @@ func (cl *Client) CreateWayBill(req CreateWayBillRequest) (response CreateWayBil
 		102: ErrCarNotFound,
 	}
 
-	err = cl.PostJson("create_way_bill", e, req, &response)
+	err = cl.Post("create_way_bill", e, v, &response)
 
 	return
 }
