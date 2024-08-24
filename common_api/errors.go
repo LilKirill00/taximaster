@@ -106,8 +106,9 @@ var (
 
 	ErrNoLicenseToUseWayBill = errors.New("common_api: Нет лицензии на использование путевых листов")
 
-	ErrTimeRange   = errors.New("common_api: Время начала должно быть меньше времени окончания")
-	ErrTimeExpired = errors.New("common_api: Время уже истекло")
+	ErrTimeRange           = errors.New("common_api: Время начала должно быть меньше времени окончания")
+	ErrTimeExpired         = errors.New("common_api: Время уже истекло")
+	ErrTimePeriodMore7Days = errors.New("common_api: 	Задан период времени более 7 дней")
 
 	ErrDriverFiredOrBlocked                   = errors.New("common_api: Водитель уволен либо заблокирован")
 	ErrPlanShiftOutdated                      = errors.New("common_api: Запланированная смена устарела")
