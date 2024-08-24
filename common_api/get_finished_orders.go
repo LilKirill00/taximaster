@@ -79,7 +79,7 @@ func (cl *Client) GetFinishedOrders(req GetFinishedOrdersRequest) (response GetF
 			stringSlice[i] = strconv.Itoa(num)
 		}
 
-		v.Add("order_params", strings.Join(stringSlice, ";"))
+		v.Add("state_ids", strings.Join(stringSlice, ";"))
 	}
 	if req.Fields != "" {
 		v.Add("fields", req.Fields)
