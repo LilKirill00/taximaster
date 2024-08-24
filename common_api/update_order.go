@@ -55,6 +55,10 @@ type (
 		FlightNumber *string `json:"flight_number,omitempty" validate:"omitempty"`
 		// Использовать специальную проверку перед изменением заказа
 		NeedCustomValidate *bool `json:"need_custom_validate,omitempty" validate:"omitempty"`
+		// ИД сотрудника, должен быть подчиненным старого ИД клиента в заявке,
+		// если не передавали новый ИД клиента, либо подчиненным нового ИД клиента,
+		// если передали новый ИД клиента
+		ClientEmployeeID *int `json:"client_employee_id,omitempty" validate:"omitempty"`
 	}
 
 	UpdateOrderResponse struct {
@@ -64,12 +68,10 @@ type (
 )
 
 // Изменение информации по заказу
-func (cl *Client) UpdateOrder(req UpdateOrderRequest) (UpdateOrderResponse, error) {
-	var response = UpdateOrderResponse{}
-
-	err := validator.Validate(req)
+func (cl *Client) UpdateOrder(req UpdateOrderRequest) (response UpdateOrderResponse, err error) {
+	err = validator.Validate(req)
 	if err != nil {
-		return response, err
+		return
 	}
 
 	/*
@@ -89,6 +91,10 @@ func (cl *Client) UpdateOrder(req UpdateOrderRequest) (UpdateOrderResponse, erro
 		 }
 		111	Недостаточно средств на безналичном счете клиента в ТМ
 		112	Для клиента запрещена оплата заказа наличными. Клиент должен максимально использовать в заказе безналичную оплату (оплату с основного счета)
+		113	Клиент заблокирован
+		114	Сотрудник клиента не найден
+		115	Не найден клиент, который может использовать собственный счет для оплаты заказов
+		116	Сотрудник клиента заблокирован
 	*/
 	e := errorMap{
 		100: ErrOrderNotFound,
@@ -104,9 +110,13 @@ func (cl *Client) UpdateOrder(req UpdateOrderRequest) (UpdateOrderResponse, erro
 		110: ErrSpecialOrderCheck,
 		111: ErrInsufficientFundsCashless,
 		112: ErrCashPaymentNotAllowed,
+		113: ErrClientBlocked,
+		114: ErrCustomerClientNotFound,
+		115: ErrClientwhoCanUseTheirOwnNotFound,
+		116: ErrCustomerClientBlocked,
 	}
 
 	err = cl.PostJson("update_order", e, req, &response)
 
-	return response, err
+	return
 }
