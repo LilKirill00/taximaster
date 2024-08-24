@@ -101,4 +101,7 @@ var (
 	ErrSystemEventNotActive = errors.New("common_api: Системное событие не активно")
 
 	ErrNoLicenseToUseWayBill = errors.New("common_api: Нет лицензии на использование путевых листов")
+
+	ErrTimeRange   = errors.New("common_api: Время начала действия приоритета должно быть меньше времени окончания")
+	ErrTimeExpired = errors.New("common_api: Время действия приоритета уже истекло")
 )
