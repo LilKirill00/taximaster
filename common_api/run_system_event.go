@@ -9,12 +9,10 @@ type (
 	}
 )
 
-func (cl *Client) RunSystemEvent(req interface{}) (EmptyResponse, error) {
-	var response = EmptyResponse{}
-
-	err := validator.Validate(req)
+func (cl *Client) RunSystemEvent(req interface{}) (response EmptyResponse, err error) {
+	err = validator.Validate(req)
 	if err != nil {
-		return response, err
+		return
 	}
 
 	/*
@@ -30,5 +28,5 @@ func (cl *Client) RunSystemEvent(req interface{}) (EmptyResponse, error) {
 
 	err = cl.PostJson("run_system_event", e, req, &response)
 
-	return response, err
+	return
 }
