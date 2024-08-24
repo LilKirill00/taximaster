@@ -1,13 +1,18 @@
 package common_api
 
-import "github.com/ros-tel/taximaster/validator"
+import (
+	"net/url"
+	"strconv"
+
+	"github.com/ros-tel/taximaster/validator"
+)
 
 type (
 	CreateWayBillCheckRequest struct {
 		// ИД путевого листа (должен быть задан либо ИД либо номер)
-		WayBillID int `json:"way_bill_id" validate:"required"`
+		WayBillID int `validate:"omitempty"`
 		// Номер путевого листа (должен быть задан либо ИД либо номер)
-		WayBillNumber string `json:"way_bill_number" validate:"required"`
+		WayBillNumber string `validate:"omitempty"`
 		// Тип осмотра ("med/tech")
 		Kind string `json:"kind" validate:"required,eq=med|eq=tech"`
 		// Имя пользователя
@@ -29,6 +34,23 @@ func (cl *Client) CreateWayBillCheck(req CreateWayBillCheckRequest) (response Em
 		return
 	}
 
+	v := url.Values{}
+	if req.WayBillID != 0 {
+		v.Add("way_bill_id", strconv.Itoa(req.WayBillID))
+	}
+	if req.WayBillNumber != "" {
+		v.Add("way_bill_number", req.WayBillNumber)
+	}
+	v.Add("kind", req.Kind)
+	v.Add("user_name", req.UserName)
+	v.Add("success", strconv.FormatBool(req.Success))
+	if req.Number != "" {
+		v.Add("number", req.Number)
+	}
+	if req.Comment != "" {
+		v.Add("comment", req.Comment)
+	}
+
 	/*
 		100 Нет лицензии на использование путевых листов
 		101 Не найден путевой лист
@@ -38,7 +60,7 @@ func (cl *Client) CreateWayBillCheck(req CreateWayBillCheckRequest) (response Em
 		101: ErrWayBillNotFound,
 	}
 
-	err = cl.PostJson("create_way_bill_check", e, req, &response)
+	err = cl.Post("create_way_bill_check", e, v, &response)
 
 	return
 }
