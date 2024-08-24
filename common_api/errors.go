@@ -50,6 +50,7 @@ var (
 	ErrSourceNotFound             = errors.New("common_api: Адрес подачи не распознан")
 	ErrDestNotFound               = errors.New("common_api: Адрес назначения не распознан")
 	ErrPlanShiftNotFound          = errors.New("common_api: Запланированная смена не найдена")
+	ErrReservationTypeNotFound    = errors.New("common_api: Не найден тип резервирования")
 
 	ErrClientBlocked         = errors.New("common_api: Клиент заблокирован")
 	ErrCustomerClientBlocked = errors.New("common_api: Сотрудник клиента заблокирован")
@@ -104,8 +105,8 @@ var (
 
 	ErrNoLicenseToUseWayBill = errors.New("common_api: Нет лицензии на использование путевых листов")
 
-	ErrTimeRange   = errors.New("common_api: Время начала действия приоритета должно быть меньше времени окончания")
-	ErrTimeExpired = errors.New("common_api: Время действия приоритета уже истекло")
+	ErrTimeRange   = errors.New("common_api: Время начала должно быть меньше времени окончания")
+	ErrTimeExpired = errors.New("common_api: Время уже истекло")
 
 	ErrDriverFiredOrBlocked                   = errors.New("common_api: Водитель уволен либо заблокирован")
 	ErrPlanShiftOutdated                      = errors.New("common_api: Запланированная смена устарела")
@@ -116,4 +117,7 @@ var (
 
 	ErrEditingRemoteEmployeePhoneNumbersIsProhibited = errors.New("common_api: Запрещено редактирование телефонов удаленного сотрудника")
 	ErrAttributeIsNotGlobal                          = errors.New("common_api: Атрибут не глобальный")
+
+	ErrCarAlreadyReservedInThisTime   = errors.New("common_api: Автомобиль уже зарезервирован в указанный период времени")
+	ErrDriverAlreadyHaveCarInThisTime = errors.New("common_api: Водитель уже имеет зарезервированный автомобиль в указанный период времени")
 )
