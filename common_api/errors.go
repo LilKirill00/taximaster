@@ -121,4 +121,5 @@ var (
 
 	ErrCarAlreadyReservedInThisTime   = errors.New("common_api: Автомобиль уже зарезервирован в указанный период времени")
 	ErrDriverAlreadyHaveCarInThisTime = errors.New("common_api: Водитель уже имеет зарезервированный автомобиль в указанный период времени")
+	ErrOrderStateNotMeetConditions    = errors.New("common_api: Состояние заказа не соответствует необходимым условиям")
 )
