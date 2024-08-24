@@ -56,7 +56,7 @@ type (
 	}
 )
 
-// Проведение операции по клиенту
+// Запрос операций по клиенту
 func (cl *Client) GetClientOperations(req GetClientOperationsRequest) (response GetClientOperationsResponse, err error) {
 	err = validator.Validate(req)
 	if err != nil {
