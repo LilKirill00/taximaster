@@ -113,4 +113,6 @@ var (
 	ErrExceededMaxPurchases                   = errors.New("common_api: Превышено максимальное число покупок")
 	ErrDuplicatePurchases                     = errors.New("common_api: Повторная покупка")
 	ErrCrewNotAssignedAttributeForShiftAccess = errors.New("common_api: Экипажу не назначен атрибут для доступа к смене")
+
+	ErrEditingRemoteEmployeePhoneNumbersIsProhibited = errors.New("common_api: Запрещено редактирование телефонов удаленного сотрудника")
 )
