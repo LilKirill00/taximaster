@@ -115,4 +115,5 @@ var (
 	ErrCrewNotAssignedAttributeForShiftAccess = errors.New("common_api: Экипажу не назначен атрибут для доступа к смене")
 
 	ErrEditingRemoteEmployeePhoneNumbersIsProhibited = errors.New("common_api: Запрещено редактирование телефонов удаленного сотрудника")
+	ErrAttributeIsNotGlobal                          = errors.New("common_api: Атрибут не глобальный")
 )
