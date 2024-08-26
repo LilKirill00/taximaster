@@ -10,7 +10,7 @@ import (
 type (
 	GetClientEmployeeInfoRequest struct {
 		// ИД сотрудника клиента
-		ClientEmployeeId int `validate:"required"`
+		ClientEmployeeID int `validate:"required"`
 	}
 
 	GetClientEmployeeInfoResponse struct {
@@ -41,7 +41,7 @@ func (cl *Client) GetClientEmployeeInfo(req GetClientEmployeeInfoRequest) (respo
 	}
 
 	v := url.Values{}
-	v.Add("start_time", strconv.Itoa(req.ClientEmployeeId))
+	v.Add("client_employee_id", strconv.Itoa(req.ClientEmployeeID))
 
 	/*
 		100	Не найден сотрудник клиента ИД=CLIENT_EMPLOYEE_ID

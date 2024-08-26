@@ -18,14 +18,16 @@ type (
 		Radius int `validate:"omitempty"`
 		// Искать адреса в ТМ (по умолчанию = true)
 		SearchInTm *bool `validate:"omitempty"`
+		// Искать адреса в Яндекс (по умолчанию = false)
+		SearchInYandex *bool `validate:"omitempty"`
 		// Искать адреса в Google (по умолчанию = false)
-		SearchInGoogle bool `validate:"omitempty"`
+		SearchInGoogle *bool `validate:"omitempty"`
 		// Искать адреса в TMGeoService (по умолчанию = false)
-		SearchInTmGeoService bool `validate:"omitempty"`
+		SearchInTmGeoService *bool `validate:"omitempty"`
 		// Искать адреса в Map.md (по умолчанию = false)
-		SearchInMapMd bool `validate:"omitempty"`
+		SearchInMapMd *bool `validate:"omitempty"`
 		// Искать адреса в 2ГИС (по умолчанию = false)
-		SearchIn2Gis bool `validate:"omitempty"`
+		SearchIn2Gis *bool `validate:"omitempty"`
 	}
 
 	FindNearestAddressResponse struct {
@@ -70,19 +72,22 @@ func (cl *Client) FindNearestAddress(req FindNearestAddressRequest) (response Fi
 		v.Add("radius", strconv.Itoa(req.Radius))
 	}
 	if req.SearchInTm != nil {
-		v.Add("search_in_yandex", strconv.FormatBool(*req.SearchInTm))
+		v.Add("search_in_tm", strconv.FormatBool(*req.SearchInTm))
 	}
-	if req.SearchInGoogle {
-		v.Add("search_in_google", "true")
+	if req.SearchInYandex != nil {
+		v.Add("search_in_yandex", strconv.FormatBool(*req.SearchInYandex))
 	}
-	if req.SearchInTmGeoService {
-		v.Add("search_in_tmgeoservice", "true")
+	if req.SearchInGoogle != nil {
+		v.Add("search_in_google", strconv.FormatBool(*req.SearchInGoogle))
 	}
-	if req.SearchInMapMd {
-		v.Add("search_in_mapmd", "true")
+	if req.SearchInTmGeoService != nil {
+		v.Add("search_in_tmgeoservice", strconv.FormatBool(*req.SearchInTmGeoService))
 	}
-	if req.SearchIn2Gis {
-		v.Add("search_in_2gis", "true")
+	if req.SearchInMapMd != nil {
+		v.Add("search_in_mapmd", strconv.FormatBool(*req.SearchInMapMd))
+	}
+	if req.SearchIn2Gis != nil {
+		v.Add("search_in_2gis", strconv.FormatBool(*req.SearchIn2Gis))
 	}
 
 	/*

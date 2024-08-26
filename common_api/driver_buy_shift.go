@@ -1,13 +1,18 @@
 package common_api
 
-import "github.com/ros-tel/taximaster/validator"
+import (
+	"net/url"
+	"strconv"
+
+	"github.com/ros-tel/taximaster/validator"
+)
 
 type (
 	DriverBuyShiftRequest struct {
 		// ИД экипажа
-		CrewID int `json:"crew_id" validate:"required"`
+		CrewID int `validate:"required"`
 		// ИД запланированной смены
-		PlanShiftID int `json:"plan_shift_id" validate:"required"`
+		PlanShiftID int `validate:"required"`
 	}
 )
 
@@ -17,6 +22,10 @@ func (cl *Client) DriverBuyShift(req DriverBuyShiftRequest) (response EmptyRespo
 	if err != nil {
 		return
 	}
+
+	v := url.Values{}
+	v.Add("crew_id", strconv.Itoa(req.CrewID))
+	v.Add("plan_shift_id", strconv.Itoa(req.PlanShiftID))
 
 	/*
 		100	Запланированная смена не найдена
@@ -43,7 +52,7 @@ func (cl *Client) DriverBuyShift(req DriverBuyShiftRequest) (response EmptyRespo
 		109: ErrCrewNotAssignedAttributeForShiftAccess,
 	}
 
-	err = cl.PostJson("driver_buy_shift", e, req, &response)
+	err = cl.Post("driver_buy_shift", e, v, &response)
 
 	return
 }

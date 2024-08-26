@@ -13,9 +13,9 @@ type (
 		DriverID int `validate:"required"`
 
 		// Нужна ли фотография водителя
-		NeedPhoto bool `validate:"omitempty"`
+		NeedPhoto *bool `validate:"omitempty"`
 		// Список возвращаемых полей через запятую
-		Fields string `validate:"fields"`
+		Fields string `validate:"omitempty"`
 	}
 
 	GetDriverInfoResponse struct {
@@ -75,8 +75,8 @@ func (cl *Client) GetDriverInfo(req GetDriverInfoRequest) (response GetDriverInf
 
 	v := url.Values{}
 	v.Add("driver_id", strconv.Itoa(req.DriverID))
-	if req.NeedPhoto {
-		v.Add("need_photo", "true")
+	if req.NeedPhoto != nil {
+		v.Add("need_photo", strconv.FormatBool(*req.NeedPhoto))
 	}
 	if req.Fields != "" {
 		v.Add("fields", req.Fields)

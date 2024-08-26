@@ -44,15 +44,15 @@ type (
 		// Описание
 		Comment string `json:"comment,omitempty" validate:"omitempty"`
 		// Массив параметров водителя. Устарело. Рекомендуется использовать параметр attribute_values
-		OrderParams *[]int `json:"order_params,omitempty" validate:"omitempty"`
+		OrderParams []int `json:"order_params,omitempty" validate:"omitempty"`
 		// Фотография водителя
 		DriverPhoto string `json:"driver_photo,omitempty" validate:"omitempty,base64"`
 		// Массив телефонов водителя
-		Phones *[]Phone `json:"phones,omitempty" validate:"omitempty"`
+		Phones []Phone `json:"phones,omitempty" validate:"omitempty"`
 		// Имя для TaxoPhone
 		NameForTaxophone string `json:"name_for_taxophone,omitempty" validate:"omitempty"`
 		// Массив значений атрибутов
-		AttributeValues *[]AttributeValue `json:"attribute_values,omitempty" validate:"omitempty"`
+		AttributeValues []AttributeValue `json:"attribute_values,omitempty" validate:"omitempty"`
 	}
 
 	CreateDriverResponse struct {

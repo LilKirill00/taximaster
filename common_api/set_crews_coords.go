@@ -30,7 +30,7 @@ func (cl *Client) SetCrewsCoords(req SetCrewsCoordsRequest) (response EmptyRespo
 		return
 	}
 
-	err = cl.PostJson("create_driver_dyn_priority", nil, req, &response)
+	err = cl.PostJson("set_crews_coords", nil, req, &response)
 
 	return
 }

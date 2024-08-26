@@ -1,6 +1,11 @@
 package common_api
 
-import "github.com/ros-tel/taximaster/validator"
+import (
+	"net/url"
+	"strconv"
+
+	"github.com/ros-tel/taximaster/validator"
+)
 
 type (
 	CreateOrderRequest struct {
@@ -24,15 +29,15 @@ type (
 		// ИД тарифа
 		TariffID int `json:"tariff_id,omitempty" validate:"omitempty"`
 		// Предварительный заказ
-		IsPrior bool `json:"is_prior,omitempty" validate:"omitempty"`
+		IsPrior *bool `json:"is_prior,omitempty" validate:"omitempty"`
 		// Долгота адреса подачи
-		SourceLon float64 `json:"source_lon,omitempty" validate:"omitempty"`
+		SourceLon *float64 `json:"source_lon,omitempty" validate:"omitempty"`
 		// Широта адреса подачи
-		SourceLat float64 `json:"source_lat,omitempty" validate:"omitempty"`
+		SourceLat *float64 `json:"source_lat,omitempty" validate:"omitempty"`
 		// Долгота адреса назначения
-		DestLon float64 `json:"dest_lon,omitempty" validate:"omitempty"`
+		DestLon *float64 `json:"dest_lon,omitempty" validate:"omitempty"`
 		// Широта адреса назначения
-		DestLat float64 `json:"dest_lat,omitempty" validate:"omitempty"`
+		DestLat *float64 `json:"dest_lat,omitempty" validate:"omitempty"`
 	}
 
 	CreateOrderResponse struct {
@@ -46,6 +51,44 @@ func (cl *Client) CreateOrder(req CreateOrderRequest) (response CreateOrderRespo
 	err = validator.Validate(req)
 	if err != nil {
 		return
+	}
+
+	v := url.Values{}
+	v.Add("phone", req.Phone)
+	v.Add("source", req.Source)
+	v.Add("source_time", req.SourceTime)
+	if req.Dest != "" {
+		v.Add("dest", req.Dest)
+	}
+	if req.Customer != "" {
+		v.Add("customer", req.Customer)
+	}
+	if req.Comment != "" {
+		v.Add("comment", req.Comment)
+	}
+	if req.CrewGroupID != 0 {
+		v.Add("crew_group_id", strconv.Itoa(req.CrewGroupID))
+	}
+	if req.UdsID != 0 {
+		v.Add("uds_id", strconv.Itoa(req.UdsID))
+	}
+	if req.TariffID != 0 {
+		v.Add("tariff_id", strconv.Itoa(req.TariffID))
+	}
+	if req.IsPrior != nil {
+		v.Add("uds_id", strconv.FormatBool(*req.IsPrior))
+	}
+	if req.SourceLon != nil {
+		v.Add("source_lon", strconv.FormatFloat(*req.SourceLon, 'g', -1, 64))
+	}
+	if req.SourceLat != nil {
+		v.Add("source_lat", strconv.FormatFloat(*req.SourceLat, 'g', -1, 64))
+	}
+	if req.DestLon != nil {
+		v.Add("dest_lon", strconv.FormatFloat(*req.DestLon, 'g', -1, 64))
+	}
+	if req.DestLat != nil {
+		v.Add("dest_lat", strconv.FormatFloat(*req.DestLat, 'g', -1, 64))
 	}
 
 	/*
@@ -72,7 +115,7 @@ func (cl *Client) CreateOrder(req CreateOrderRequest) (response CreateOrderRespo
 		116: ErrCashPaymentNotAllowed,
 	}
 
-	err = cl.PostJson("create_order", e, req, &response)
+	err = cl.Post("create_order", e, v, &response)
 
 	return
 }

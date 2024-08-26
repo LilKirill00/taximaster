@@ -5,7 +5,7 @@ import "github.com/ros-tel/taximaster/validator"
 type (
 	CreateCarReservationRequest struct {
 		// ИД автомобиля
-		CarId int `json:"car_id" validate:"required"`
+		CarID int `json:"car_id" validate:"required"`
 		// ИД водителя
 		DriverID int `json:"driver_id" validate:"required"`
 		// ИД типа резервирования

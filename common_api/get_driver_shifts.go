@@ -25,7 +25,7 @@ type (
 		// Включить в ответ неуспешно завершенные смены (по умолчанию true)
 		FailedShifts *bool `validate:"omitempty"`
 		// Включить в ответ возвращенные смены (по умолчанию false)
-		ReturnedShifts bool `validate:"omitempty"`
+		ReturnedShifts *bool `validate:"omitempty"`
 	}
 
 	GetDriverShiftsResponse struct {
@@ -55,7 +55,7 @@ type (
 		// План продолжительность смены, ч. (для бессрочных)
 		PlanShiftLength int `json:"plan_shift_length"`
 		// ИД первой группы экипажей, которая может купить смену
-		PlanShiftCrewGroupId int `json:"plan_shift_crew_group_id"`
+		PlanShiftCrewGroupID int `json:"plan_shift_crew_group_id"`
 		// ИД групп экипажей, которые могут купить смену
 		PlanShiftCrewGroups []int `json:"plan_shift_crew_groups"`
 		// Состояние смены («new» - новая, «in_work» - в работе, «finished» - завершена успешно, «failed» - завершена неуспешно)
@@ -100,8 +100,8 @@ func (cl *Client) GetDriverShifts(req GetDriverShiftsRequest) (response GetDrive
 	if req.FailedShifts != nil {
 		v.Add("failed_shifts", strconv.FormatBool(*req.FailedShifts))
 	}
-	if req.ReturnedShifts {
-		v.Add("returned_shifts", "true")
+	if req.ReturnedShifts != nil {
+		v.Add("returned_shifts", strconv.FormatBool(*req.ReturnedShifts))
 	}
 
 	err = cl.Get("get_driver_shifts", nil, v, &response)

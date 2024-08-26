@@ -2,6 +2,7 @@ package common_api
 
 import (
 	"net/url"
+	"strconv"
 
 	"github.com/ros-tel/taximaster/validator"
 )
@@ -10,9 +11,9 @@ type (
 	GetCrewsInfoRequest struct {
 		// Нужно ли возвращать экипажи не на линии
 		// По умолчанию возвращаются только экипажи на линии
-		NotWorkingCrews bool `validate:"omitempty"`
+		NotWorkingCrews *bool `validate:"omitempty"`
 		// Список возвращаемых полей через запятую
-		Fields string `validate:"fields"`
+		Fields string `validate:"omitempty"`
 	}
 
 	GetCrewsInfoResponse struct {
@@ -29,8 +30,8 @@ func (cl *Client) GetCrewsInfo(req GetCrewsInfoRequest) (response GetCrewsInfoRe
 	}
 
 	v := url.Values{}
-	if req.NotWorkingCrews {
-		v.Add("not_working_crews", "true")
+	if req.NotWorkingCrews != nil {
+		v.Add("not_working_crews", strconv.FormatBool(*req.NotWorkingCrews))
 	}
 	if req.Fields != "" {
 		v.Add("fields", req.Fields)

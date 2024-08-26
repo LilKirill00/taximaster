@@ -37,7 +37,7 @@ type (
 		// Использовать E-mail для отправки уведомлений по заказу
 		UseEmailInforming *bool `validate:"omitempty"`
 		// Комментарий
-		Comment *string `validate:"omitempty"`
+		Comment string `validate:"omitempty"`
 		// Использовать собственный счет для оплаты заказов
 		UseOwnAccount *bool `validate:"omitempty"`
 	}
@@ -86,15 +86,11 @@ func (cl *Client) UpdateClientInfo(req UpdateClientInfoRequest) (response EmptyR
 	if req.UseEmailInforming != nil {
 		v.Add("use_email_informing", strconv.FormatBool(*req.UseEmailInforming))
 	}
-	if req.Comment != nil {
-		v.Add("comment", *req.Comment)
+	if req.Comment != "" {
+		v.Add("comment", req.Comment)
 	}
 	if req.UseOwnAccount != nil {
-		if *req.UseOwnAccount {
-			v.Add("use_own_account", "true")
-		} else {
-			v.Add("use_own_account", "false")
-		}
+		v.Add("use_own_account", strconv.FormatBool(*req.UseOwnAccount))
 	}
 
 	/*

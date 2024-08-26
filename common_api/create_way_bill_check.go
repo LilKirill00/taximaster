@@ -14,16 +14,16 @@ type (
 		// Номер путевого листа (должен быть задан либо ИД либо номер)
 		WayBillNumber string `validate:"omitempty"`
 		// Тип осмотра ("med/tech")
-		Kind string `json:"kind" validate:"required,eq=med|eq=tech"`
+		Kind string `validate:"required,eq=med|eq=tech"`
 		// Имя пользователя
-		UserName string `json:"user_name" validate:"required"`
+		UserName string `validate:"required"`
 		// Результат осмотра
-		Success bool `json:"success" validate:"required"`
+		Success bool `validate:"required"`
 
 		// Номер осмотра
-		Number string `json:"number,omitempty" validate:"omitempty"`
+		Number string `validate:"omitempty"`
 		// Комментарий
-		Comment string `json:"comment,omitempty" validate:"omitempty"`
+		Comment string `validate:"omitempty"`
 	}
 )
 

@@ -38,7 +38,7 @@ func (cl *Client) CheckAuthorization(req CheckAuthorizationRequest) (response Ch
 		100: ErrClientNotFound,
 	}
 
-	err = cl.Get("get_addresses_like", e, v, &response)
+	err = cl.Get("check_authorization", e, v, &response)
 
 	return
 }

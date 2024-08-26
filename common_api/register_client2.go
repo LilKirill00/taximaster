@@ -44,7 +44,7 @@ type (
 	}
 )
 
-// Регистрация клиента
+// Регистрация клиента 2
 func (cl *Client) RegisterClient2(req RegisterClient2Request) (response RegisterClient2Response, err error) {
 	err = validator.Validate(req)
 	if err != nil {
@@ -74,7 +74,7 @@ func (cl *Client) RegisterClient2(req RegisterClient2Request) (response Register
 		109: ErrPasswordDoesNotComplyWithPasswordPolicy,
 	}
 
-	err = cl.PostJson("register_client", e, req, &response)
+	err = cl.PostJson("register_client2", e, req, &response)
 
 	return
 }

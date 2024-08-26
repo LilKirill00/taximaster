@@ -16,19 +16,19 @@ type (
 		// Время подачи
 		SourceTime string `json:"source_time,omitempty" validate:"omitempty,datetime=20060102150405"`
 		// Предварительный заказ
-		IsPrior bool `json:"is_prior,omitempty" validate:"omitempty"`
+		IsPrior *bool `json:"is_prior,omitempty" validate:"omitempty"`
 		// ИД клиента
-		ClientId int `json:"client_id,omitempty" validate:"omitempty"`
+		ClientID int `json:"client_id,omitempty" validate:"omitempty"`
 		// ИД сотрудника клиента
-		ClientEmployeeId int `json:"client_employee_id,omitempty" validate:"omitempty"`
+		ClientEmployeeID int `json:"client_employee_id,omitempty" validate:"omitempty"`
 		// ИД скидки
-		DiscountId int `json:"discount_id,omitempty" validate:"omitempty"`
+		DiscountID int `json:"discount_id,omitempty" validate:"omitempty"`
 		// ИД дисконтной карты
-		DiscCardId int `json:"disc_card_id,omitempty" validate:"omitempty"`
+		DiscCardID int `json:"disc_card_id,omitempty" validate:"omitempty"`
 		// ИД района подачи
-		SourceZoneId int `json:"source_zone_id,omitempty" validate:"omitempty"`
+		SourceZoneID int `json:"source_zone_id,omitempty" validate:"omitempty"`
 		// ИД района назначения
-		DestZoneId int `json:"dest_zone_id,omitempty" validate:"omitempty"`
+		DestZoneID int `json:"dest_zone_id,omitempty" validate:"omitempty"`
 		// Километраж по городу
 		DistanceCity float64 `json:"distance_city,omitempty" validate:"omitempty"`
 		// Километраж за городом
@@ -36,23 +36,23 @@ type (
 		// Километраж до подачи за городом
 		SourceDistanceCountry float64 `json:"source_distance_country,omitempty" validate:"omitempty"`
 		// Загородный заказ
-		IsCountry bool `json:"is_country,omitempty" validate:"omitempty"`
+		IsCountry *bool `json:"is_country,omitempty" validate:"omitempty"`
 		// Время ожидания посадки клиента в минутах
 		WaitingMinutes int `json:"waiting_minutes,omitempty" validate:"omitempty"`
 		// Почасовой заказ
-		IsHourly bool `json:"is_hourly,omitempty" validate:"omitempty"`
+		IsHourly *bool `json:"is_hourly,omitempty" validate:"omitempty"`
 		// Длительность почасового заказа в минутах
 		HourlyMinutes int `json:"hourly_minutes,omitempty" validate:"omitempty"`
 		// Призовой заказ
-		IsPrize bool `json:"is_prize,omitempty" validate:"omitempty"`
+		IsPrize *bool `json:"is_prize,omitempty" validate:"omitempty"`
 		// Обратный путь за городом
-		BackWay bool `json:"back_way,omitempty" validate:"omitempty"`
+		BackWay *bool `json:"back_way,omitempty" validate:"omitempty"`
 		// Список ИД услуг, пример: []int{1, 2, 3} Устарело. Рекомендуется использовать параметр order_params.
 		Services []int `json:"services,omitempty" validate:"omitempty"`
 		// Список ИД параметров заказа, пример: []int{1, 2, 3}
 		OrderParams []int `json:"order_params,omitempty" validate:"omitempty"`
 		// Признак безналичного заказа
-		Cashless bool `json:"cashless,omitempty" validate:"omitempty"`
+		Cashless *bool `json:"cashless,omitempty" validate:"omitempty"`
 	}
 
 	CalcOrderCostResponse struct {
@@ -80,29 +80,29 @@ func (cl *Client) CalcOrderCost(req CalcOrderCostRequest) (response CalcOrderCos
 	if req.SourceTime != "" {
 		v.Add("source_time", req.SourceTime)
 	}
-	if req.IsPrior {
-		v.Add("is_prior", "true")
+	if req.IsPrior != nil {
+		v.Add("is_prior", strconv.FormatBool(*req.IsPrior))
 	}
 	if req.SourceTime != "" {
 		v.Add("source_time", req.SourceTime)
 	}
-	if req.ClientId != 0 {
-		v.Add("client_id", strconv.Itoa(req.ClientId))
+	if req.ClientID != 0 {
+		v.Add("client_id", strconv.Itoa(req.ClientID))
 	}
-	if req.ClientEmployeeId != 0 {
-		v.Add("client_employee_id", strconv.Itoa(req.ClientEmployeeId))
+	if req.ClientEmployeeID != 0 {
+		v.Add("client_employee_id", strconv.Itoa(req.ClientEmployeeID))
 	}
-	if req.DiscountId != 0 {
-		v.Add("discount_id", strconv.Itoa(req.DiscountId))
+	if req.DiscountID != 0 {
+		v.Add("discount_id", strconv.Itoa(req.DiscountID))
 	}
-	if req.DiscCardId != 0 {
-		v.Add("disc_card_id", strconv.Itoa(req.DiscCardId))
+	if req.DiscCardID != 0 {
+		v.Add("disc_card_id", strconv.Itoa(req.DiscCardID))
 	}
-	if req.SourceZoneId != 0 {
-		v.Add("source_zone_id", strconv.Itoa(req.SourceZoneId))
+	if req.SourceZoneID != 0 {
+		v.Add("source_zone_id", strconv.Itoa(req.SourceZoneID))
 	}
-	if req.DestZoneId != 0 {
-		v.Add("dest_zone_id", strconv.Itoa(req.DestZoneId))
+	if req.DestZoneID != 0 {
+		v.Add("dest_zone_id", strconv.Itoa(req.DestZoneID))
 	}
 	if req.DistanceCity != 0 {
 		v.Add("distance_city", strconv.FormatFloat(req.DistanceCity, 'g', -1, 64))
@@ -113,23 +113,23 @@ func (cl *Client) CalcOrderCost(req CalcOrderCostRequest) (response CalcOrderCos
 	if req.SourceDistanceCountry != 0 {
 		v.Add("source_distance_country", strconv.FormatFloat(req.SourceDistanceCountry, 'g', -1, 64))
 	}
-	if req.IsCountry {
-		v.Add("is_country", "true")
+	if req.IsCountry != nil {
+		v.Add("is_country", strconv.FormatBool(*req.IsCountry))
 	}
 	if req.WaitingMinutes != 0 {
 		v.Add("waiting_minutes", strconv.Itoa(req.WaitingMinutes))
 	}
-	if req.IsHourly {
-		v.Add("is_hourly", "true")
+	if req.IsHourly != nil {
+		v.Add("is_hourly", strconv.FormatBool(*req.IsHourly))
 	}
 	if req.HourlyMinutes != 0 {
 		v.Add("hourly_minutes", strconv.Itoa(req.HourlyMinutes))
 	}
-	if req.IsPrize {
-		v.Add("is_prize", "true")
+	if req.IsPrize != nil {
+		v.Add("is_prize", strconv.FormatBool(*req.IsPrize))
 	}
-	if req.BackWay {
-		v.Add("back_way", "true")
+	if req.BackWay != nil {
+		v.Add("back_way", strconv.FormatBool(*req.BackWay))
 	}
 	if len(req.Services) != 0 {
 		stringSlice := make([]string, len(req.Services))
@@ -149,8 +149,8 @@ func (cl *Client) CalcOrderCost(req CalcOrderCostRequest) (response CalcOrderCos
 
 		v.Add("order_params", strings.Join(stringSlice, ";"))
 	}
-	if req.Cashless {
-		v.Add("cashless", "true")
+	if req.Cashless != nil {
+		v.Add("cashless", strconv.FormatBool(*req.Cashless))
 	}
 
 	/*

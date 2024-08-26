@@ -14,10 +14,11 @@ type (
 		// Максимальное количество клиентов, которое надо вернуть. Если не указано, то 10.
 		MaxClientsCount int `validate:"omitempty"`
 		// Фильтр по группе клиентов
-		ClientGroupId int `validate:"omitempty"`
+		ClientGroupID int `validate:"omitempty"`
 		// Фильтр по вышестоящему подразделению, возвращаются все подчиненные отделы и сотрудники на всю глубину иерархии
 		ParentID int `validate:"omitempty"`
-		// Список возвращаемых полей через запятую. По умолчанию возвращаются поля "name" и "number". Поле "client_id" возвращается всегда
+		// Список возвращаемых полей через запятую. По умолчанию возвращаются поля "name" и "number".
+		// Поле "client_id" возвращается всегда
 		Fields string `validate:"omitempty"`
 	}
 
@@ -26,7 +27,7 @@ type (
 	}
 )
 
-// Запрос информации по клиенту
+// Запрос информации по клиентам
 func (cl *Client) GetClientsInfo(req GetClientsInfoRequest) (response GetClientsInfoResponse, err error) {
 	err = validator.Validate(req)
 	if err != nil {
@@ -35,22 +36,22 @@ func (cl *Client) GetClientsInfo(req GetClientsInfoRequest) (response GetClients
 
 	v := url.Values{}
 	if req.Text != "" {
-		v.Add("fields", req.Text)
+		v.Add("text", req.Text)
 	}
 	if req.MaxClientsCount != 0 {
-		v.Add("fields", strconv.Itoa(req.MaxClientsCount))
+		v.Add("max_clients_count", strconv.Itoa(req.MaxClientsCount))
 	}
-	if req.ClientGroupId != 0 {
-		v.Add("fields", strconv.Itoa(req.ClientGroupId))
+	if req.ClientGroupID != 0 {
+		v.Add("client_group_id", strconv.Itoa(req.ClientGroupID))
 	}
 	if req.ParentID != 0 {
-		v.Add("fields", strconv.Itoa(req.ParentID))
+		v.Add("parent_id", strconv.Itoa(req.ParentID))
 	}
 	if req.Fields != "" {
 		v.Add("fields", req.Fields)
 	}
 
-	err = cl.Get("get_client_info", nil, v, &response)
+	err = cl.Get("get_clients_info", nil, v, &response)
 
 	return
 }

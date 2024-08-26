@@ -8,31 +8,31 @@ type (
 		CrewID int `json:"crew_id" validate:"required"`
 
 		// ИД автомобиля
-		CarID *int `json:"car_id,omitempty" validate:"omitempty"`
+		CarID int `json:"car_id,omitempty" validate:"omitempty"`
 		// ИД водителя
-		DriverID *int `json:"driver_id,omitempty" validate:"omitempty"`
+		DriverID int `json:"driver_id,omitempty" validate:"omitempty"`
 		// ИД группы экипажа
-		CrewGroupID *int `json:"crew_group_id,omitempty" validate:"omitempty"`
+		CrewGroupID int `json:"crew_group_id,omitempty" validate:"omitempty"`
 		// Позывной экипажа
-		Code *string `json:"code,omitempty" validate:"omitempty"`
+		Code string `json:"code,omitempty" validate:"omitempty"`
 		// Сумма, списываемая за смену
-		WorkShiftSum *float64 `json:"work_shift_sum,omitempty" validate:"omitempty"`
+		WorkShiftSum float64 `json:"work_shift_sum,omitempty" validate:"omitempty"`
 		// Минимальный баланс, при котором можно выйти на смену
-		MinBalance *int `json:"min_balance,omitempty" validate:"omitempty"`
+		MinBalance int `json:"min_balance,omitempty" validate:"omitempty"`
 		// Время работы, формат: “6.00-10.30, 23:00-00:48”
-		WorkTime *string `json:"work_time,omitempty" validate:"omitempty"`
+		WorkTime string `json:"work_time,omitempty" validate:"omitempty"`
 		// Шашка
-		HasLightHouse *bool `json:"has_light_house,omitempty" validate:"omitempty"`
+		HasLightHouse bool `json:"has_light_house,omitempty" validate:"omitempty"`
 		// Наклейка
-		HasLabel *bool `json:"has_label,omitempty" validate:"omitempty"`
+		HasLabel bool `json:"has_label,omitempty" validate:"omitempty"`
 		// GPS идентификатор экипажа
-		CrewGpsId *int `json:"crew_gps_id,omitempty" validate:"omitempty"`
+		CrewGpsID int `json:"crew_gps_id,omitempty" validate:"omitempty"`
 		// Запрет работы вне запланированных смен
-		UsePlanShifts *bool `json:"use_plan_shifts,omitempty" validate:"omitempty"`
+		UsePlanShifts bool `json:"use_plan_shifts,omitempty" validate:"omitempty"`
 		// Массив параметров экипажа
-		OrderParams *[]int `json:"order_params,omitempty" validate:"omitempty"`
+		OrderParams []int `json:"order_params,omitempty" validate:"omitempty"`
 		// Массив значений атрибутов
-		AttributeValues *[]AttributeValue `json:"attribute_values,omitempty" validate:"omitempty"`
+		AttributeValues []AttributeValue `json:"attribute_values,omitempty" validate:"omitempty"`
 	}
 )
 

@@ -2,6 +2,7 @@ package common_api
 
 import (
 	"net/url"
+	"strconv"
 
 	"github.com/ros-tel/taximaster/validator"
 )
@@ -9,9 +10,9 @@ import (
 type (
 	GetDriversInfoRequest struct {
 		// Включить в ответ запроса заблокированных водителей
-		LockedDrivers bool `validate:"omitempty"`
+		LockedDrivers *bool `validate:"omitempty"`
 		// Включить в ответ запроса уволенных водителей
-		DismissedDrivers bool `validate:"omitempty"`
+		DismissedDrivers *bool `validate:"omitempty"`
 		// Список возвращаемых полей через запятую
 		Fields string `validate:"omitempty"`
 	}
@@ -30,11 +31,11 @@ func (cl *Client) GetDriversInfo(req GetDriversInfoRequest) (response GetDrivers
 	}
 
 	v := url.Values{}
-	if req.LockedDrivers {
-		v.Add("locked_drivers", "true")
+	if req.LockedDrivers != nil {
+		v.Add("locked_drivers", strconv.FormatBool(*req.LockedDrivers))
 	}
-	if req.DismissedDrivers {
-		v.Add("dismissed_drivers", "true")
+	if req.DismissedDrivers != nil {
+		v.Add("dismissed_drivers", strconv.FormatBool(*req.DismissedDrivers))
 	}
 	if req.Fields != "" {
 		v.Add("fields", req.Fields)

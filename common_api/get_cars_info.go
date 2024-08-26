@@ -2,6 +2,7 @@ package common_api
 
 import (
 	"net/url"
+	"strconv"
 
 	"github.com/ros-tel/taximaster/validator"
 )
@@ -9,9 +10,9 @@ import (
 type (
 	GetCarsInfoRequest struct {
 		// Включить в ответ заблокированных автомобилей (по умолчанию false)
-		LockedCars bool `validate:"omitempty"`
+		LockedCars *bool `validate:"omitempty"`
 		// Список возвращаемых полей через запятую
-		Fields string `validate:"fields"`
+		Fields string `validate:"omitempty"`
 	}
 
 	GetCarsInfoResponse struct {
@@ -20,7 +21,7 @@ type (
 	}
 )
 
-// Запрос информации об автомобиле
+// Запрос списка автомобилей
 func (cl *Client) GetCarsInfo(req GetCarsInfoRequest) (response GetCarsInfoResponse, err error) {
 	err = validator.Validate(req)
 	if err != nil {
@@ -28,21 +29,14 @@ func (cl *Client) GetCarsInfo(req GetCarsInfoRequest) (response GetCarsInfoRespo
 	}
 
 	v := url.Values{}
-	if req.LockedCars {
-		v.Add("locked_cars", "true")
+	if req.LockedCars != nil {
+		v.Add("locked_cars", strconv.FormatBool(*req.LockedCars))
 	}
 	if req.Fields != "" {
 		v.Add("fields", req.Fields)
 	}
 
-	/*
-		100 Автомобиль не найден
-	*/
-	e := errorMap{
-		100: ErrCarNotFound,
-	}
-
-	err = cl.Get("get_car_info", e, v, &response)
+	err = cl.Get("get_cars_info", nil, v, &response)
 
 	return
 }

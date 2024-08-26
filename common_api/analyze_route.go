@@ -15,13 +15,13 @@ type (
 		Dest string `validate:"omitempty"`
 
 		// Долгота адреса подачи
-		SourceLon float64 `validate:"omitempty"`
+		SourceLon *float64 `validate:"omitempty"`
 		// Широта адреса подачи
-		SourceLat float64 `validate:"omitempty"`
+		SourceLat *float64 `validate:"omitempty"`
 		// Долгота адреса назначения
-		DestLon float64 `validate:"omitempty"`
+		DestLon *float64 `validate:"omitempty"`
 		// Широта адреса назначения
-		DestLat float64 `validate:"omitempty"`
+		DestLat *float64 `validate:"omitempty"`
 	}
 
 	AnalyzeRouteResponse struct {
@@ -30,13 +30,13 @@ type (
 		// Долгота адреса подачи
 		SourceLon float64 `json:"source_lon"`
 		// ИД района подачи
-		SourceZoneId int `json:"source_zone_id"`
+		SourceZoneID int `json:"source_zone_id"`
 		// Широта адреса назначения
 		DestLat float64 `json:"dest_lat"`
 		// Долгота адреса назначения
 		DestLon float64 `json:"dest_lon"`
 		// ИД района назначения
-		DestZoneId int `json:"dest_zone_id"`
+		DestZoneID int `json:"dest_zone_id"`
 		// Километраж по городу
 		CityDist float64 `json:"city_dist"`
 		// Километраж за городом
@@ -60,17 +60,17 @@ func (cl *Client) AnalyzeRoute(req AnalyzeRouteRequest) (response AnalyzeRouteRe
 	if req.Dest != "" {
 		v.Add("dest", req.Dest)
 	}
-	if req.SourceLon != 0 {
-		v.Add("source_lon", strconv.FormatFloat(req.SourceLon, 'g', -1, 64))
+	if req.SourceLon != nil {
+		v.Add("source_lon", strconv.FormatFloat(*req.SourceLon, 'g', -1, 64))
 	}
-	if req.SourceLat != 0 {
-		v.Add("source_lat", strconv.FormatFloat(req.SourceLat, 'g', -1, 64))
+	if req.SourceLat != nil {
+		v.Add("source_lat", strconv.FormatFloat(*req.SourceLat, 'g', -1, 64))
 	}
-	if req.DestLon != 0 {
-		v.Add("dest_lon", strconv.FormatFloat(req.DestLon, 'g', -1, 64))
+	if req.DestLon != nil {
+		v.Add("dest_lon", strconv.FormatFloat(*req.DestLon, 'g', -1, 64))
 	}
-	if req.DestLat != 0 {
-		v.Add("dest_lat", strconv.FormatFloat(req.DestLat, 'g', -1, 64))
+	if req.DestLat != nil {
+		v.Add("dest_lat", strconv.FormatFloat(*req.DestLat, 'g', -1, 64))
 	}
 
 	/*

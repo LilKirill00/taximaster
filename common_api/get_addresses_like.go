@@ -10,11 +10,11 @@ import (
 type (
 	GetAddressesLikeRequest struct {
 		// Искать улицы
-		GetStreets bool `validate:"omitempty"`
+		GetStreets bool `validate:"required"`
 		// Искать пункты
-		GetPoints bool `validate:"omitempty"`
+		GetPoints bool `validate:"required"`
 		// Искать дома. Не может быть равно true, если get_streets = true или get_points = true.
-		GetHouses bool `validate:"omitempty"`
+		GetHouses bool `validate:"required"`
 		// Часть названия улицы или пункта, если идет поиск улиц или пунктов, или полное название улицы, если идет поиск домов
 		Street string `validate:"required"`
 
@@ -27,15 +27,15 @@ type (
 		// Искать адреса в ТМ (по умолчанию = true)
 		SearchInTm *bool `validate:"omitempty"`
 		// Искать адреса в Яндекс (по умолчанию = false)
-		SearchInYandex bool `validate:"omitempty"`
+		SearchInYandex *bool `validate:"omitempty"`
 		// Искать адреса в Google (по умолчанию = false)
-		SearchInGoogle bool `validate:"omitempty"`
+		SearchInGoogle *bool `validate:"omitempty"`
 		// Искать адреса в 2GIS (по умолчанию = false)
-		SearchIn2Gis bool `validate:"omitempty"`
+		SearchIn2Gis *bool `validate:"omitempty"`
 		// Искать адреса в TMGeoService (по умолчанию = false)
-		SearchInTmGeoService bool `validate:"omitempty"`
+		SearchInTmGeoService *bool `validate:"omitempty"`
 		// Искать адреса в Map.md (по умолчанию = false)
-		SearchInMapMd bool `validate:"omitempty"`
+		SearchInMapMd *bool `validate:"omitempty"`
 	}
 
 	GetAddressesLikeResponse struct {
@@ -87,22 +87,22 @@ func (cl *Client) GetAddressesLike(req GetAddressesLikeRequest) (response GetAdd
 		v.Add("max_addresses_count", strconv.Itoa(req.MaxAddressesCount))
 	}
 	if req.SearchInTm != nil {
-		v.Add("get_houses", strconv.FormatBool(*req.SearchInTm))
+		v.Add("search_in_tm", strconv.FormatBool(*req.SearchInTm))
 	}
-	if req.SearchInYandex {
-		v.Add("search_in_yandex", "true")
+	if req.SearchInYandex != nil {
+		v.Add("search_in_yandex", strconv.FormatBool(*req.SearchInYandex))
 	}
-	if req.SearchInGoogle {
-		v.Add("search_in_google", "true")
+	if req.SearchInGoogle != nil {
+		v.Add("search_in_google", strconv.FormatBool(*req.SearchInGoogle))
 	}
-	if req.SearchIn2Gis {
-		v.Add("search_in_2gis", "true")
+	if req.SearchIn2Gis != nil {
+		v.Add("search_in_2gis", strconv.FormatBool(*req.SearchIn2Gis))
 	}
-	if req.SearchInTmGeoService {
-		v.Add("search_in_tmgeoservice", "true")
+	if req.SearchInTmGeoService != nil {
+		v.Add("search_in_tmgeoservice", strconv.FormatBool(*req.SearchInTmGeoService))
 	}
-	if req.SearchInMapMd {
-		v.Add("search_in_mapmd", "true")
+	if req.SearchInMapMd != nil {
+		v.Add("search_in_mapmd", strconv.FormatBool(*req.SearchInMapMd))
 	}
 
 	/*

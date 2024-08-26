@@ -27,7 +27,7 @@ type (
 
 	DriverPlanShift struct {
 		// ИД запланированной смены
-		PlanShiftId int `json:"plan_shift_id"`
+		PlanShiftID int `json:"plan_shift_id"`
 		// Наименование запланированной смены
 		PlanShiftName string `json:"plan_shift_name"`
 		// Комментарий запланированной смены
@@ -43,7 +43,7 @@ type (
 		// План продолжительность смены, ч. (для бессрочных)
 		PlanShiftLength int `json:"plan_shift_length"`
 		// ИД первой группы экипажей, которая может купить смену
-		PlanShiftCrewGroupId int `json:"plan_shift_crew_group_id"`
+		PlanShiftCrewGroupID int `json:"plan_shift_crew_group_id"`
 		// ИД групп экипажей, которые могут купить смену
 		PlanShiftCrewGroups []int `json:"plan_shift_crew_groups"`
 		// Максимальное количество продаж смены

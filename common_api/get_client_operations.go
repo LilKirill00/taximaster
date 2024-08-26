@@ -20,7 +20,7 @@ type (
 		// - 0 - Основной счет
 		// - 1 - Бонусный счет
 		// - Остальные - нестандартные счета
-		AccountKind int `validate:"omitempty,min=0"`
+		AccountKind *int `validate:"omitempty,min=0"`
 	}
 
 	GetClientOperationsResponse struct {
@@ -67,8 +67,8 @@ func (cl *Client) GetClientOperations(req GetClientOperationsRequest) (response 
 	v.Add("client_id", strconv.Itoa(req.ClientID))
 	v.Add("start_time", req.StartTime)
 	v.Add("finish_time", req.FinishTime)
-	if req.AccountKind > 0 {
-		v.Add("account_kind", strconv.Itoa(req.AccountKind))
+	if req.AccountKind != nil {
+		v.Add("account_kind", strconv.Itoa(*req.AccountKind))
 	}
 
 	/*

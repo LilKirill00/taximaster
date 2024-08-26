@@ -34,11 +34,11 @@ type (
 		// Описание
 		Comment string `json:"comment,omitempty" validate:"omitempty"`
 		// Массив параметров автомобиля. Устарело. Рекомендуется использовать параметр attribute_values
-		OrderParams *[]int `json:"order_params,omitempty" validate:"omitempty"`
+		OrderParams []int `json:"order_params,omitempty" validate:"omitempty"`
 		// Фотография автомобиля
-		CarPhoto *string `json:"car_photo,omitempty" validate:"omitempty,base64"`
+		CarPhoto string `json:"car_photo,omitempty" validate:"omitempty,base64"`
 		// Массив значений атрибутов
-		AttributeValues *[]AttributeValue `json:"attribute_values,omitempty" validate:"omitempty"`
+		AttributeValues []AttributeValue `json:"attribute_values,omitempty" validate:"omitempty"`
 	}
 
 	CreateCarResponse struct {

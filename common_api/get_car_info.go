@@ -13,9 +13,9 @@ type (
 		CarID int `validate:"required"`
 
 		// Нужна ли фотография автомобиля
-		NeedPhoto bool `validate:"omitempty"`
+		NeedPhoto *bool `validate:"omitempty"`
 		// Список возвращаемых полей через запятую
-		Fields string `validate:"fields"`
+		Fields string `validate:"omitempty"`
 	}
 
 	GetCarInfoResponse struct {
@@ -59,8 +59,8 @@ func (cl *Client) GetCarInfo(req GetCarInfoRequest) (response GetCarInfoResponse
 
 	v := url.Values{}
 	v.Add("car_id", strconv.Itoa(req.CarID))
-	if req.NeedPhoto {
-		v.Add("need_photo", "true")
+	if req.NeedPhoto != nil {
+		v.Add("need_photo", strconv.FormatBool(*req.NeedPhoto))
 	}
 	if req.Fields != "" {
 		v.Add("fields", req.Fields)

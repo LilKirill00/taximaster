@@ -33,11 +33,11 @@ type (
 		// E-mail
 		Email string `validate:"omitempty,email"`
 		// Использовать E-mail для отправки уведомлений по заказу
-		UseEmailInforming bool `validate:"omitempty"`
+		UseEmailInforming *bool `validate:"omitempty"`
 		// Комментарий
 		Comment string `validate:"omitempty"`
 		// Использовать собственный счет для оплаты заказов
-		UseOwnAccount bool `validate:"omitempty"`
+		UseOwnAccount *bool `validate:"omitempty"`
 	}
 
 	RegisterClientResponse struct {
@@ -75,14 +75,14 @@ func (cl *Client) RegisterClient(req RegisterClientRequest) (response RegisterCl
 	if req.Email != "" {
 		v.Add("email", req.Email)
 	}
-	if req.UseEmailInforming {
-		v.Add("use_email_informing", "true")
+	if req.UseEmailInforming != nil {
+		v.Add("use_email_informing", strconv.FormatBool(*req.UseEmailInforming))
 	}
 	if req.Comment != "" {
 		v.Add("comment", req.Comment)
 	}
-	if req.UseOwnAccount {
-		v.Add("use_own_account", "true")
+	if req.UseOwnAccount != nil {
+		v.Add("use_own_account", strconv.FormatBool(*req.UseOwnAccount))
 	}
 
 	/*

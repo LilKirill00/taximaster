@@ -28,7 +28,7 @@ type (
 		// Массив параметров экипажа. Устарело. Рекомендуется использовать параметр attribute_values
 		OrderParams []int `json:"order_params,omitempty" validate:"omitempty"`
 		// Массив значений атрибутов
-		AttributeValues *[]AttributeValue `json:"attribute_values,omitempty" validate:"omitempty"`
+		AttributeValues []AttributeValue `json:"attribute_values,omitempty" validate:"omitempty"`
 	}
 
 	CreateCrewResponse struct {
