@@ -49,7 +49,7 @@ func NewClient(addr, key string, id *int) *Client {
 	}
 }
 
-func Invoke(cl *Client, e errorMap, req *http.Request, obj_resp interface{}) error {
+func (cl *Client) invoke(e errorMap, req *http.Request, obj_resp interface{}) error {
 	if cl.user_id != nil {
 		req.Header.Add("X-User-Id", strconv.Itoa(*cl.user_id))
 	}
@@ -90,7 +90,7 @@ func (cl *Client) Get(reqName string, e errorMap, values url.Values, obj_resp in
 	}
 	req.Header.Add("Signature", fmt.Sprintf("%x", md5.Sum(append([]byte(request)[:], cl.apiKey[:]...))))
 
-	return Invoke(cl, e, req, obj_resp)
+	return cl.invoke(e, req, obj_resp)
 }
 
 func (cl *Client) Post(reqName string, e errorMap, values url.Values, obj_resp interface{}) error {
@@ -105,7 +105,7 @@ func (cl *Client) Post(reqName string, e errorMap, values url.Values, obj_resp i
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 	req.Header.Add("Signature", fmt.Sprintf("%x", md5.Sum(append(body[:], cl.apiKey[:]...))))
 
-	return Invoke(cl, e, req, obj_resp)
+	return cl.invoke(e, req, obj_resp)
 }
 
 func (cl *Client) PostJson(reqName string, e errorMap, obj_req, obj_resp interface{}) error {
@@ -123,7 +123,7 @@ func (cl *Client) PostJson(reqName string, e errorMap, obj_req, obj_resp interfa
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("Signature", fmt.Sprintf("%x", md5.Sum(append(body[:], cl.apiKey[:]...))))
 
-	return Invoke(cl, e, req, obj_resp)
+	return cl.invoke(e, req, obj_resp)
 }
 
 func errorByCode(e errorMap, code int, descr string) error {
