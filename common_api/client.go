@@ -153,6 +153,10 @@ func errorByCode(e errorMap, code int, descr string) error {
 		return ErrIncorrectParameter
 	case 10:
 		return ErrInternalRequestProcessing
+	case 13:
+		return ErrUserCommonAPINotFound
+	case 14:
+		return ErrRequestNotAvailableToCommonAPIUser
 	}
 
 	err, ok = e[code]
