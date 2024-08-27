@@ -109,7 +109,7 @@ func (cl *Client) CreateOrder(req CreateOrderRequest) (response CreateOrderRespo
 		102: ErrCrewGroupsNotFound,
 		103: ErrUdsNotFound,
 		110: ErrClientBlocked,
-		111: ErrClientwhoCanUseTheirOwnNotFound,
+		111: ErrClientWhoCanUseTheirOwnNotFound,
 		114: ErrInsufficientFundsCashless,
 		115: ErrNegativeBalanceCashless,
 		116: ErrCashPaymentNotAllowed,

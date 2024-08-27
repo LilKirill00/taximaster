@@ -64,7 +64,7 @@ var (
 	ErrInsufficientFundsCashless = errors.New("common_api: Недостаточно средств на безналичном счете клиента в ТМ")
 	ErrInsufficientFundsDriver   = errors.New("common_api: Недостаточно денег на счете водителя")
 
-	ErrClientwhoCanUseTheirOwnNotFound = errors.New("common_api: Не найден клиент, который может использовать собственный счет для оплаты заказов")
+	ErrClientWhoCanUseTheirOwnNotFound = errors.New("common_api: Не найден клиент, который может использовать собственный счет для оплаты заказов")
 
 	ErrSpecialOrderCheck = errors.New("common_api: Ошибка специальной проверки заказа")
 
@@ -103,7 +103,7 @@ var (
 	ErrParameterNotFoundOrCannotBeBoundCar    = errors.New("common_api: Параметр не найден или не может быть привязан к автомобилю")
 	ErrParameterNotFoundOrCannotBeBoundDriver = errors.New("common_api: Параметр не найден или не может быть привязан к водителю")
 
-	ErrPystemEventBadType   = errors.New("common_api: У системного события тип не \"По запросу CommonAPI\"")
+	ErrSystemEventBadType   = errors.New("common_api: У системного события тип не \"По запросу CommonAPI\"")
 	ErrSystemEventNotFound  = errors.New("common_api: Системное событие не найдено")
 	ErrSystemEventNotActive = errors.New("common_api: Системное событие не активно")
 

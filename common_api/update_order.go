@@ -112,7 +112,7 @@ func (cl *Client) UpdateOrder(req UpdateOrderRequest) (response UpdateOrderRespo
 		112: ErrCashPaymentNotAllowed,
 		113: ErrClientBlocked,
 		114: ErrCustomerClientNotFound,
-		115: ErrClientwhoCanUseTheirOwnNotFound,
+		115: ErrClientWhoCanUseTheirOwnNotFound,
 		116: ErrCustomerClientBlocked,
 	}
 

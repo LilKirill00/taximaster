@@ -21,7 +21,7 @@ func (cl *Client) RunSystemEvent(req interface{}) (response EmptyResponse, err e
 		102 Системное событие не активно
 	*/
 	e := errorMap{
-		100: ErrPystemEventBadType,
+		100: ErrSystemEventBadType,
 		101: ErrSystemEventNotFound,
 		102: ErrSystemEventNotActive,
 	}

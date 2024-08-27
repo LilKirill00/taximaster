@@ -114,7 +114,7 @@ func (cl *Client) CreateOrder2(req CreateOrder2Request) (response CreateOrder2Re
 		108: ErrOrderParameterNotFound,
 		109: ErrAttributeCannotBeBoundOrder,
 		110: ErrClientBlocked,
-		111: ErrClientwhoCanUseTheirOwnNotFound,
+		111: ErrClientWhoCanUseTheirOwnNotFound,
 		112: ErrCustomerClientBlocked,
 		113: ErrSpecialOrderCheck,
 		114: ErrInsufficientFundsCashless,
