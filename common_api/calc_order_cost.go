@@ -11,48 +11,48 @@ import (
 type (
 	CalcOrderCostRequest struct {
 		// ИД тарифа
-		TariffID int `json:"tariff_id" validate:"required"`
+		TariffID int `validate:"required"`
 
 		// Время подачи
-		SourceTime string `json:"source_time,omitempty" validate:"omitempty,datetime=20060102150405"`
+		SourceTime string `validate:"omitempty,datetime=20060102150405"`
 		// Предварительный заказ
-		IsPrior *bool `json:"is_prior,omitempty" validate:"omitempty"`
+		IsPrior *bool `validate:"omitempty"`
 		// ИД клиента
-		ClientID int `json:"client_id,omitempty" validate:"omitempty"`
+		ClientID int `validate:"omitempty"`
 		// ИД сотрудника клиента
-		ClientEmployeeID int `json:"client_employee_id,omitempty" validate:"omitempty"`
+		ClientEmployeeID int `validate:"omitempty"`
 		// ИД скидки
-		DiscountID int `json:"discount_id,omitempty" validate:"omitempty"`
+		DiscountID int `validate:"omitempty"`
 		// ИД дисконтной карты
-		DiscCardID int `json:"disc_card_id,omitempty" validate:"omitempty"`
+		DiscCardID int `validate:"omitempty"`
 		// ИД района подачи
-		SourceZoneID int `json:"source_zone_id,omitempty" validate:"omitempty"`
+		SourceZoneID int `validate:"omitempty"`
 		// ИД района назначения
-		DestZoneID int `json:"dest_zone_id,omitempty" validate:"omitempty"`
+		DestZoneID int `validate:"omitempty"`
 		// Километраж по городу
-		DistanceCity float64 `json:"distance_city,omitempty" validate:"omitempty"`
+		DistanceCity float64 `validate:"omitempty"`
 		// Километраж за городом
-		DistanceCountry float64 `json:"distance_country,omitempty" validate:"omitempty"`
+		DistanceCountry float64 `validate:"omitempty"`
 		// Километраж до подачи за городом
-		SourceDistanceCountry float64 `json:"source_distance_country,omitempty" validate:"omitempty"`
+		SourceDistanceCountry float64 `validate:"omitempty"`
 		// Загородный заказ
-		IsCountry *bool `json:"is_country,omitempty" validate:"omitempty"`
+		IsCountry *bool `validate:"omitempty"`
 		// Время ожидания посадки клиента в минутах
-		WaitingMinutes int `json:"waiting_minutes,omitempty" validate:"omitempty"`
+		WaitingMinutes int `validate:"omitempty"`
 		// Почасовой заказ
-		IsHourly *bool `json:"is_hourly,omitempty" validate:"omitempty"`
+		IsHourly *bool `validate:"omitempty"`
 		// Длительность почасового заказа в минутах
-		HourlyMinutes int `json:"hourly_minutes,omitempty" validate:"omitempty"`
+		HourlyMinutes int `validate:"omitempty"`
 		// Призовой заказ
-		IsPrize *bool `json:"is_prize,omitempty" validate:"omitempty"`
+		IsPrize *bool `validate:"omitempty"`
 		// Обратный путь за городом
-		BackWay *bool `json:"back_way,omitempty" validate:"omitempty"`
+		BackWay *bool `validate:"omitempty"`
 		// Список ИД услуг, пример: []int{1, 2, 3} Устарело. Рекомендуется использовать параметр order_params.
-		Services []int `json:"services,omitempty" validate:"omitempty"`
+		Services []int `validate:"omitempty"`
 		// Список ИД параметров заказа, пример: []int{1, 2, 3}
-		OrderParams []int `json:"order_params,omitempty" validate:"omitempty"`
+		OrderParams []int `validate:"omitempty"`
 		// Признак безналичного заказа
-		Cashless *bool `json:"cashless,omitempty" validate:"omitempty"`
+		Cashless *bool `validate:"omitempty"`
 	}
 
 	CalcOrderCostResponse struct {
