@@ -29,7 +29,7 @@ type (
 		CrewGpsID int `json:"crew_gps_id,omitempty" validate:"omitempty"`
 		// Запрет работы вне запланированных смен
 		UsePlanShifts bool `json:"use_plan_shifts,omitempty" validate:"omitempty"`
-		// Массив параметров экипажа
+		// Массив параметров экипажа. Устарело. Рекомендуется использовать параметр attribute_values.
 		OrderParams []int `json:"order_params,omitempty" validate:"omitempty"`
 		// Массив значений атрибутов
 		AttributeValues []AttributeValue `json:"attribute_values,omitempty" validate:"omitempty"`
