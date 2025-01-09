@@ -36,6 +36,11 @@ type (
 		SearchInMapMd *bool `validate:"omitempty"`
 		// Искать адреса в DaData (по умолчанию = false)
 		SearchInDadata *bool `validate:"omitempty"`
+		// Признак того, что выполняется поиск уже полностью введенного адреса.
+		// Пока что это влияет только на поиск по карте 2GIS: если признак равен false,
+		// то будет использоваться запрос автодополнения (suggests),
+		// иначе - запрос геокодирования (geocode). По умолчанию = false.
+		IsFullAddress *bool `validate:"omitempty"`
 	}
 
 	GetAddressesLike2Response struct {
