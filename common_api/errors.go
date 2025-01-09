@@ -101,6 +101,7 @@ var (
 	ErrAttributeCannotBeBoundClient = errors.New("common_api: Атрибут не может быть привязан к клиенту")
 
 	ErrParameterNotFoundOrCannotBeBoundCrew   = errors.New("common_api: Параметр не найден или не может быть привязан к экипажу")
+	ErrAttributeNotFoundOrCannotBeBoundCrew   = errors.New("common_api: Атрибут не найден или не может быть привязан к экипажу")
 	ErrParameterNotFoundOrCannotBeBoundCar    = errors.New("common_api: Параметр не найден или не может быть привязан к автомобилю")
 	ErrParameterNotFoundOrCannotBeBoundDriver = errors.New("common_api: Параметр не найден или не может быть привязан к водителю")
 
