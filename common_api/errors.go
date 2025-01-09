@@ -58,6 +58,7 @@ var (
 	ErrReservationTypeNotFound     = errors.New("common_api: Не найден тип резервирования")
 	ErrReservationNotFound         = errors.New("common_api: Не найдено резервирование автомобиля")
 	ErrInaccessibilityTypeNotFound = errors.New("common_api: Не найден тип недоступности")
+	ErrInaccessibilityNotFound     = errors.New("common_api: Недоступность автомобиля не найдена")
 	ErrFixedDriverShiftNotFound    = errors.New("common_api: Фиксированная смена водителя не найдена")
 
 	ErrClientBlocked         = errors.New("common_api: Клиент заблокирован")
