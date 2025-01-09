@@ -36,6 +36,8 @@ type (
 		SearchInTmGeoService *bool `validate:"omitempty"`
 		// Искать адреса в Map.md (по умолчанию = false)
 		SearchInMapMd *bool `validate:"omitempty"`
+		// Искать адреса в DaData (по умолчанию = false)
+		SearchInDadata *bool `validate:"omitempty"`
 	}
 
 	GetAddressesLikeResponse struct {
@@ -47,6 +49,8 @@ type (
 			// - "google" - Google
 			// - "2gis" - 2GIS
 			// - "tmgeoservice" - TMGeoService
+			// - "mapmd" - Map.md
+			// - "dadata" - DaData
 			AddressSource string `json:"address_source"`
 			// Название улицы или пункта
 			Street string `json:"street"`

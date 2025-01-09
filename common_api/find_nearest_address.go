@@ -26,6 +26,8 @@ type (
 		SearchInTmGeoService *bool `validate:"omitempty"`
 		// Искать адреса в Map.md (по умолчанию = false)
 		SearchInMapMd *bool `validate:"omitempty"`
+		// Искать адреса в DaData (по умолчанию = false)
+		SearchInDadata *bool `validate:"omitempty"`
 		// Искать адреса в 2ГИС (по умолчанию = false)
 		SearchIn2Gis *bool `validate:"omitempty"`
 	}
@@ -37,6 +39,7 @@ type (
 		// - "tmgeoservice" - TMGeoService
 		// - "2gis" - 2GIS
 		// - "mapmd" — Map.md
+		// - "dadata" - DaData
 		AddressSource string `json:"address_source"`
 		// Название города
 		City string `json:"city"`
