@@ -47,6 +47,7 @@ var (
 	ErrUsersNotFound               = errors.New("common_api: Пользователи для отправки сообщения не найдены")
 	ErrOrderStateNotFound          = errors.New("common_api: Состояние заказа не найдено")
 	ErrOrderParameterNotFound      = errors.New("common_api: Параметр заказа не найден")
+	ErrOrderAttributeNotFound      = errors.New("common_api: Атрибут заказа не найден")
 	ErrWayBillNotFound             = errors.New("common_api: Не найден путевой лист")
 	ErrCrewGroupsNotFound          = errors.New("common_api: Группа экипажа не найдена")
 	ErrSourceNotFound              = errors.New("common_api: Адрес подачи не распознан")
