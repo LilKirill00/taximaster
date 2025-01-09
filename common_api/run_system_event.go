@@ -21,6 +21,7 @@ type (
 	}
 )
 
+// Вызвать системное событие
 func (cl *Client) RunSystemEvent(req RunSystemEventRequest) (response interface{}, err error) {
 	err = validator.Validate(req)
 	if err != nil {

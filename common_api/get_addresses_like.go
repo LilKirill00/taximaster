@@ -108,6 +108,9 @@ func (cl *Client) GetAddressesLike(req GetAddressesLikeRequest) (response GetAdd
 	if req.SearchInMapMd != nil {
 		v.Add("search_in_mapmd", strconv.FormatBool(*req.SearchInMapMd))
 	}
+	if req.SearchInDadata != nil {
+		v.Add("search_in_dadata", strconv.FormatBool(*req.SearchInDadata))
+	}
 
 	/*
 		100 Подходящие адреса не найдены

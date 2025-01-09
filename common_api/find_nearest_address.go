@@ -92,6 +92,9 @@ func (cl *Client) FindNearestAddress(req FindNearestAddressRequest) (response Fi
 	if req.SearchIn2Gis != nil {
 		v.Add("search_in_2gis", strconv.FormatBool(*req.SearchIn2Gis))
 	}
+	if req.SearchInDadata != nil {
+		v.Add("search_in_dadata", strconv.FormatBool(*req.SearchInDadata))
+	}
 
 	/*
 		100 Подходящий адрес не найден

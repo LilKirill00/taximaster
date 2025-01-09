@@ -70,6 +70,8 @@ type (
 		OrderID int `json:"order_id"`
 		// Текст ошибки для пользователя
 		Message string `json:"message"`
+		// можно ли создать заказ несмотря на ошибки проверки
+		CanCreateOrder bool `json:"can_create_order"`
 	}
 )
 

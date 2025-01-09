@@ -64,6 +64,8 @@ type (
 	UpdateOrderResponse struct {
 		// Текст ошибки для пользователя
 		Message string `json:"message"`
+		// можно ли изменить заказ несмотря на ошибки проверки
+		CanCreateOrder bool `json:"can_create_order"`
 	}
 )
 

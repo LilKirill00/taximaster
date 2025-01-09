@@ -112,6 +112,12 @@ func (cl *Client) GetAddressesLike2(req GetAddressesLike2Request) (response GetA
 	if req.SearchInMapMd != nil {
 		v.Add("search_in_mapmd", strconv.FormatBool(*req.SearchInMapMd))
 	}
+	if req.SearchInDadata != nil {
+		v.Add("search_in_dadata", strconv.FormatBool(*req.SearchInDadata))
+	}
+	if req.IsFullAddress != nil {
+		v.Add("is_full_address", strconv.FormatBool(*req.IsFullAddress))
+	}
 
 	/*
 		100 Подходящие адреса не найдены
