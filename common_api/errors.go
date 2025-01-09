@@ -42,6 +42,7 @@ var (
 	ErrCustomerClientNotFound      = errors.New("common_api: Сотрудник клиента не найден")
 	ErrDiscountCardIsNotValid      = errors.New("common_api: Дисконтная карта не действительна")
 	ErrNoMatchingAddressesFound    = errors.New("common_api: Подходящие адреса не найдены")
+	ErrNoMatchingAddressFound      = errors.New("common_api: Подходящий адрес не найден")
 	ErrSearchLocationNotSpecified  = errors.New("common_api: Не указано место для поиска адресов")
 	ErrParentClientNotFound        = errors.New("common_api: Клиент указанный в качестве родителя не найден")
 	ErrUsersNotFound               = errors.New("common_api: Пользователи для отправки сообщения не найдены")

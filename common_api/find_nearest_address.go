@@ -94,11 +94,11 @@ func (cl *Client) FindNearestAddress(req FindNearestAddressRequest) (response Fi
 	}
 
 	/*
-		100 Подходящие адреса не найдены
+		100 Подходящий адрес не найден
 		101 Не указано место для поиска адресов
 	*/
 	e := errorMap{
-		100: ErrNoMatchingAddressesFound,
+		100: ErrNoMatchingAddressFound,
 		101: ErrSearchLocationNotSpecified,
 	}
 
