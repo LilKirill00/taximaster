@@ -126,6 +126,14 @@ type (
 		PriorToCurrentBeforeMinutes int `json:"prior_to_current_before_minutes"`
 		// Номер рейса
 		FlightNumber string `json:"flight_number"`
+		// Признак того, что заказ составной
+		IsCombined bool `json:"is_combined"`
+		// Массив	Массив ИД заказов-частей, передается только для составного заказа
+		CombinedOrderPartsIds []int `json:"combined_order_parts_ids"`
+		// Признак того, что заказ является частью составного
+		IsPartOfCombined bool `json:"is_part_of_combined"`
+		// ИД составного заказа, передается, только если заказ является частью составного
+		CombinedOrderId int `json:"combined_order_id"`
 		// Сумма без скидки
 		Sum float64 `json:"sum"`
 		// Итоговая сумма заказа
@@ -168,6 +176,8 @@ type (
 		IsAuction bool `json:"is_auction"`
 		// Тип платежной системы ("card", "gpay", "apple_pay", "qr", "sber_pay", либо пусто, если не используется).
 		PaymentPaySystem string `json:"payment_pay_system"`
+		// Комментарий
+		Comment string `json:"comment"`
 	}
 )
 
