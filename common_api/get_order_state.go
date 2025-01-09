@@ -149,16 +149,7 @@ type (
 		// Массив значений атрибутов
 		AttributeValues []AttributeValue `json:"attribute_values"`
 		// Чек TMDriver. Данный узел выводится только, если по заказу есть чек
-		Bill []struct {
-			// Код элемента расчета
-			Code string `json:"code"`
-			// Наименование элемента расчета
-			Text string `json:"text"`
-			// Значение элемента расчета (количество)
-			Value string `json:"value"`
-			// Стоимость элемента расчета
-			Sum string `json:"sum"`
-		} `json:"bill"`
+		Bill []Bill `json:"bill"`
 		// Фактический маршрут по заказу, выводится только если поле fact_route передали в списке фильтра полей fields
 		FactRoute []struct {
 			// Широта точки маршрута
