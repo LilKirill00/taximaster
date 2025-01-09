@@ -28,7 +28,7 @@ func (cl *Client) DeleteCarInaccessibility(req DeleteCarInaccessibilityRequest) 
 		100 Недоступность автомобиля не найдена
 	*/
 	e := errorMap{
-		100: ErrInaccessibilityNotFound,
+		100: ErrCarInaccessibilityNotFound,
 	}
 
 	err = cl.Post("delete_car_inaccessibility", e, v, &response)
