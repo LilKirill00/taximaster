@@ -68,6 +68,8 @@ type (
 	CreateOrder2Response struct {
 		// ИД созданного заказа
 		OrderID int `json:"order_id"`
+		// Текст ошибки для пользователя
+		Message string `json:"message"`
 	}
 )
 
