@@ -50,6 +50,7 @@ var (
 	ErrOrderAttributeNotFound      = errors.New("common_api: Атрибут заказа не найден")
 	ErrWayBillNotFound             = errors.New("common_api: Не найден путевой лист")
 	ErrCrewGroupsNotFound          = errors.New("common_api: Группа экипажа не найдена")
+	ErrCrewsGroupsNotFound         = errors.New("common_api: Группа экипажей не найдена")
 	ErrSourceNotFound              = errors.New("common_api: Адрес подачи не распознан")
 	ErrDestNotFound                = errors.New("common_api: Адрес назначения не распознан")
 	ErrPlanShiftNotFound           = errors.New("common_api: Запланированная смена не найдена")
@@ -103,6 +104,7 @@ var (
 	ErrParameterNotFoundOrCannotBeBoundCrew   = errors.New("common_api: Параметр не найден или не может быть привязан к экипажу")
 	ErrAttributeNotFoundOrCannotBeBoundCrew   = errors.New("common_api: Атрибут не найден или не может быть привязан к экипажу")
 	ErrParameterNotFoundOrCannotBeBoundCar    = errors.New("common_api: Параметр не найден или не может быть привязан к автомобилю")
+	ErrAttributeNotFoundOrCannotBeBoundCar    = errors.New("common_api: Атрибут не найден или не может быть привязан к автомобилю")
 	ErrParameterNotFoundOrCannotBeBoundDriver = errors.New("common_api: Параметр не найден или не может быть привязан к водителю")
 	ErrAttributeNotFoundOrCannotBeBoundDriver = errors.New("common_api: Атрибут не найден или не может быть привязан к водителю")
 
