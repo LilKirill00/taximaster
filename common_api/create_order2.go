@@ -13,7 +13,7 @@ type (
 		// Время подачи
 		SourceTime string `json:"source_time" validate:"required,datetime=20060102150405"`
 
-		// Смещения относительно серверного времени
+		// Смещение относительно серверного времени
 		ServerTimeOffset int `json:"server_time_offset,omitempty" validate:"omitempty"`
 		// Пассажир
 		Passenger string `json:"passenger,omitempty" validate:"omitempty"`
