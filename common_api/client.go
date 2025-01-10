@@ -10,6 +10,8 @@ import (
 	"net/url"
 	"strconv"
 	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
 type (
@@ -165,4 +167,10 @@ func errorByCode(e errorMap, code int, descr string) error {
 	}
 
 	return fmt.Errorf("common_api: unknown Code: %d. Descr: %s", code, descr)
+}
+
+func Inject(cl *Client) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Set("tmclient", cl)
+	}
 }
