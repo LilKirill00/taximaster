@@ -15,9 +15,9 @@ type (
 		// Эти параметры могут использоваться в системном событии.
 		// Зарезервированный параметр "json_data": может быть любого типа, в т.ч. объект или массив,
 		// внутри которого могут быть в т.ч. вложенные объекты и массивы.
-		CustomParams interface{} `json:"custom_params,omitempty" validate:"omitempty"`
+		CustomParams *interface{} `json:"custom_params,omitempty" validate:"omitempty"`
 		// Признак необходимости ожидать завершения действий системного события.
-		WaitForCompletion bool `json:"wait_for_completion,omitempty" validate:"omitempty"`
+		WaitForCompletion *bool `json:"wait_for_completion,omitempty" validate:"omitempty"`
 	}
 )
 

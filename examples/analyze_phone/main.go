@@ -9,10 +9,11 @@ import (
 func main() {
 	cl := tm.NewClient("192.168.0.33:8089", "very-secret-api-key", nil)
 
+	trueValue := true
 	res, err := cl.AnalyzePhone(
 		tm.AnalyzePhoneRequest{
 			Phone:                 "89876543210",
-			SearchInDriversMobile: true,
+			SearchInDriversMobile: &trueValue,
 		},
 	)
 	if err != nil {

@@ -13,7 +13,7 @@ type (
 		// По умолчанию возвращаются только экипажи на линии
 		NotWorkingCrews *bool `validate:"omitempty"`
 		// Список возвращаемых полей через запятую
-		Fields string `validate:"omitempty"`
+		Fields *string `validate:"omitempty"`
 	}
 
 	GetCrewsInfoResponse struct {
@@ -33,8 +33,8 @@ func (cl *Client) GetCrewsInfo(req GetCrewsInfoRequest) (response GetCrewsInfoRe
 	if req.NotWorkingCrews != nil {
 		v.Add("not_working_crews", strconv.FormatBool(*req.NotWorkingCrews))
 	}
-	if req.Fields != "" {
-		v.Add("fields", req.Fields)
+	if req.Fields != nil {
+		v.Add("fields", *req.Fields)
 	}
 
 	err = cl.Get("get_crews_info", nil, v, &response)

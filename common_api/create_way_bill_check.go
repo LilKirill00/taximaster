@@ -10,9 +10,9 @@ import (
 type (
 	CreateWayBillCheckRequest struct {
 		// ИД путевого листа (должен быть задан либо ИД либо номер)
-		WayBillID int `validate:"omitempty"`
+		WayBillID *int `validate:"omitempty"`
 		// Номер путевого листа (должен быть задан либо ИД либо номер)
-		WayBillNumber string `validate:"omitempty"`
+		WayBillNumber *string `validate:"omitempty"`
 		// Тип осмотра ("med/tech")
 		Kind string `validate:"required,eq=med|eq=tech"`
 		// Имя пользователя
@@ -21,9 +21,9 @@ type (
 		Success bool `validate:"required"`
 
 		// Номер осмотра
-		Number string `validate:"omitempty"`
+		Number *string `validate:"omitempty"`
 		// Комментарий
-		Comment string `validate:"omitempty"`
+		Comment *string `validate:"omitempty"`
 	}
 )
 
@@ -35,20 +35,20 @@ func (cl *Client) CreateWayBillCheck(req CreateWayBillCheckRequest) (response Em
 	}
 
 	v := url.Values{}
-	if req.WayBillID != 0 {
-		v.Add("way_bill_id", strconv.Itoa(req.WayBillID))
+	if req.WayBillID != nil {
+		v.Add("way_bill_id", strconv.Itoa(*req.WayBillID))
 	}
-	if req.WayBillNumber != "" {
-		v.Add("way_bill_number", req.WayBillNumber)
+	if req.WayBillNumber != nil {
+		v.Add("way_bill_number", *req.WayBillNumber)
 	}
 	v.Add("kind", req.Kind)
 	v.Add("user_name", req.UserName)
 	v.Add("success", strconv.FormatBool(req.Success))
-	if req.Number != "" {
-		v.Add("number", req.Number)
+	if req.Number != nil {
+		v.Add("number", *req.Number)
 	}
-	if req.Comment != "" {
-		v.Add("comment", req.Comment)
+	if req.Comment != nil {
+		v.Add("comment", *req.Comment)
 	}
 
 	/*

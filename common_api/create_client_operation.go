@@ -19,13 +19,13 @@ type (
 		OperType string `validate:"required,eq=receipt|eq=expense"`
 
 		// Время создания операции (если не указано, текущее)
-		OperTime string `validate:"omitempty,datetime=20060102150405"`
+		OperTime *string `validate:"omitempty,datetime=20060102150405"`
 		// Комментарий
-		Comment string `validate:"omitempty"`
+		Comment *string `validate:"omitempty"`
 		// Тип оплаты:
 		// - cash - наличный
 		// - nocash - безналичный
-		PayType string `validate:"omitempty,eq=cash|eq=nocash"`
+		PayType *string `validate:"omitempty,eq=cash|eq=nocash"`
 		// Операция по бонусному счёту. Данный параметр устарел - рекомендуется использовать "account_kind"
 		BonusOper *bool `validate:"omitempty"`
 		// Тип счета:
@@ -51,14 +51,14 @@ func (cl *Client) CreateClientOperation(req CreateClientOperationRequest) (respo
 	v.Add("client_id", strconv.Itoa(req.ClientID))
 	v.Add("sum", strconv.FormatFloat(req.Sum, 'g', -1, 64))
 	v.Add("oper_type", req.OperType)
-	if req.OperTime != "" {
-		v.Add("oper_time", req.OperTime)
+	if req.OperTime != nil {
+		v.Add("oper_time", *req.OperTime)
 	}
-	if req.Comment != "" {
-		v.Add("comment", req.Comment)
+	if req.Comment != nil {
+		v.Add("comment", *req.Comment)
 	}
-	if req.PayType != "" {
-		v.Add("pay_type", req.PayType)
+	if req.PayType != nil {
+		v.Add("pay_type", *req.PayType)
 	}
 	if req.BonusOper != nil {
 		v.Add("bonus_oper", strconv.FormatBool(*req.BonusOper))

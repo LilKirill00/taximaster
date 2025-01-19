@@ -13,7 +13,7 @@ type (
 		CrewID int `validate:"required"`
 
 		// Список возвращаемых полей через запятую
-		Fields string `validate:"omitempty"`
+		Fields *string `validate:"omitempty"`
 	}
 
 	GetCrewInfoResponse struct {
@@ -71,8 +71,8 @@ func (cl *Client) GetCrewInfo(req GetCrewInfoRequest) (response GetCrewInfoRespo
 
 	v := url.Values{}
 	v.Add("crew_id", strconv.Itoa(req.CrewID))
-	if req.Fields != "" {
-		v.Add("fields", req.Fields)
+	if req.Fields != nil {
+		v.Add("fields", *req.Fields)
 	}
 
 	/*

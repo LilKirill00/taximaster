@@ -15,7 +15,7 @@ type (
 		FinishTime string `validate:"required,datetime=20060102150405"`
 
 		// ИД водителя
-		DriverID int `validate:"omitempty"`
+		DriverID *int `validate:"omitempty"`
 		// Включить в ответ новые смены (по умолчанию true)
 		NewShifts *bool `validate:"omitempty"`
 		// Включить в ответ смены в работе (по умолчанию true)
@@ -85,8 +85,8 @@ func (cl *Client) GetDriverShifts(req GetDriverShiftsRequest) (response GetDrive
 	v := url.Values{}
 	v.Add("start_time", req.StartTime)
 	v.Add("finish_time", req.FinishTime)
-	if req.DriverID != 0 {
-		v.Add("driver_id", strconv.Itoa(req.DriverID))
+	if req.DriverID != nil {
+		v.Add("driver_id", strconv.Itoa(*req.DriverID))
 	}
 	if req.NewShifts != nil {
 		v.Add("new_shifts", strconv.FormatBool(*req.NewShifts))

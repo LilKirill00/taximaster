@@ -17,17 +17,17 @@ type (
 		SourceTime string `json:"source_time" validate:"required,datetime=20060102150405"`
 
 		// Адрес назначения
-		Dest string `json:"dest,omitempty" validate:"omitempty"`
+		Dest *string `json:"dest,omitempty" validate:"omitempty"`
 		// Заказчик
-		Customer string `json:"customer,omitempty" validate:"omitempty"`
+		Customer *string `json:"customer,omitempty" validate:"omitempty"`
 		// Комментарий
-		Comment string `json:"comment,omitempty" validate:"omitempty"`
+		Comment *string `json:"comment,omitempty" validate:"omitempty"`
 		// ИД группы экипажей
-		CrewGroupID int `json:"crew_group_id,omitempty" validate:"omitempty"`
+		CrewGroupID *int `json:"crew_group_id,omitempty" validate:"omitempty"`
 		// ИД службы ЕДС
-		UdsID int `json:"uds_id,omitempty" validate:"omitempty"`
+		UdsID *int `json:"uds_id,omitempty" validate:"omitempty"`
 		// ИД тарифа
-		TariffID int `json:"tariff_id,omitempty" validate:"omitempty"`
+		TariffID *int `json:"tariff_id,omitempty" validate:"omitempty"`
 		// Предварительный заказ
 		IsPrior *bool `json:"is_prior,omitempty" validate:"omitempty"`
 		// Долгота адреса подачи
@@ -57,23 +57,23 @@ func (cl *Client) CreateOrder(req CreateOrderRequest) (response CreateOrderRespo
 	v.Add("phone", req.Phone)
 	v.Add("source", req.Source)
 	v.Add("source_time", req.SourceTime)
-	if req.Dest != "" {
-		v.Add("dest", req.Dest)
+	if req.Dest != nil {
+		v.Add("dest", *req.Dest)
 	}
-	if req.Customer != "" {
-		v.Add("customer", req.Customer)
+	if req.Customer != nil {
+		v.Add("customer", *req.Customer)
 	}
-	if req.Comment != "" {
-		v.Add("comment", req.Comment)
+	if req.Comment != nil {
+		v.Add("comment", *req.Comment)
 	}
-	if req.CrewGroupID != 0 {
-		v.Add("crew_group_id", strconv.Itoa(req.CrewGroupID))
+	if req.CrewGroupID != nil {
+		v.Add("crew_group_id", strconv.Itoa(*req.CrewGroupID))
 	}
-	if req.UdsID != 0 {
-		v.Add("uds_id", strconv.Itoa(req.UdsID))
+	if req.UdsID != nil {
+		v.Add("uds_id", strconv.Itoa(*req.UdsID))
 	}
-	if req.TariffID != 0 {
-		v.Add("tariff_id", strconv.Itoa(req.TariffID))
+	if req.TariffID != nil {
+		v.Add("tariff_id", strconv.Itoa(*req.TariffID))
 	}
 	if req.IsPrior != nil {
 		v.Add("uds_id", strconv.FormatBool(*req.IsPrior))

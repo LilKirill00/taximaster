@@ -14,25 +14,25 @@ type (
 		Text string `validate:"required"`
 
 		// Тип сообщения ("warning", "error", "information", "confirmation"), по умолчанию "information"
-		Type string `validate:"omitempty,eq=warning|eq=error|eq=information|eq=confirmation"`
+		Type *string `validate:"omitempty,eq=warning|eq=error|eq=information|eq=confirmation"`
 		// Заголовок сообщения
-		Header string `validate:"omitempty"`
+		Header *string `validate:"omitempty"`
 		// Скрывать сообщение через, сек. (0 — не скрывать)
-		Timeout int `validate:"omitempty"`
+		Timeout *int `validate:"omitempty"`
 		// Массив пользователей (если не указаны — отправлять всем)
-		Users []int `validate:"omitempty"`
+		Users *[]int `validate:"omitempty"`
 		// Цвет уведомления в формате RGB: #FFFFFF
-		Color string `validate:"omitempty,hexcolor"`
+		Color *string `validate:"omitempty,hexcolor"`
 		// ИД заказа для кнопки открытия карточки в уведомлении
-		OrderID int `validate:"omitempty"`
+		OrderID *int `validate:"omitempty"`
 		// ИД автомобиля для кнопки открытия карточки в уведомлении
-		CarID int `validate:"omitempty"`
+		CarID *int `validate:"omitempty"`
 		// ИД водителя для кнопки открытия карточки в уведомлении
-		DriverID int `validate:"omitempty"`
+		DriverID *int `validate:"omitempty"`
 		// ИД экипажа для кнопки открытия карточки в уведомлении
-		CrewID int `validate:"omitempty"`
+		CrewID *int `validate:"omitempty"`
 		// ИД клиента для кнопки открытия карточки в уведомлении
-		ClientID int `validate:"omitempty"`
+		ClientID *int `validate:"omitempty"`
 	}
 )
 
@@ -45,37 +45,39 @@ func (cl *Client) ShowTmMessage(req ShowTmMessageRequest) (response EmptyRespons
 
 	v := url.Values{}
 	v.Add("text", req.Text)
-	if req.Type != "" {
-		v.Add("type", req.Type)
+	if req.Type != nil {
+		v.Add("type", *req.Type)
 	}
-	if req.Header != "" {
-		v.Add("header", req.Header)
+	if req.Header != nil {
+		v.Add("header", *req.Header)
 	}
-	if req.Timeout != 0 {
-		v.Add("timeout", strconv.Itoa(req.Timeout))
+	if req.Timeout != nil {
+		v.Add("timeout", strconv.Itoa(*req.Timeout))
 	}
-	if len(req.Users) != 0 {
-		for _, user := range req.Users {
-			v.Add("users", fmt.Sprint(user))
+	if req.Users != nil {
+		if len(*req.Users) != 0 {
+			for _, user := range *req.Users {
+				v.Add("users", fmt.Sprint(user))
+			}
 		}
 	}
-	if req.Color != "" {
-		v.Add("color", req.Color)
+	if req.Color != nil {
+		v.Add("color", *req.Color)
 	}
-	if req.OrderID != 0 {
-		v.Add("order_id", strconv.Itoa(req.OrderID))
+	if req.OrderID != nil {
+		v.Add("order_id", strconv.Itoa(*req.OrderID))
 	}
-	if req.CarID != 0 {
-		v.Add("car_id", strconv.Itoa(req.CarID))
+	if req.CarID != nil {
+		v.Add("car_id", strconv.Itoa(*req.CarID))
 	}
-	if req.DriverID != 0 {
-		v.Add("driver_id", strconv.Itoa(req.DriverID))
+	if req.DriverID != nil {
+		v.Add("driver_id", strconv.Itoa(*req.DriverID))
 	}
-	if req.CrewID != 0 {
-		v.Add("crew_id", strconv.Itoa(req.CrewID))
+	if req.CrewID != nil {
+		v.Add("crew_id", strconv.Itoa(*req.CrewID))
 	}
-	if req.ClientID != 0 {
-		v.Add("client_id", strconv.Itoa(req.ClientID))
+	if req.ClientID != nil {
+		v.Add("client_id", strconv.Itoa(*req.ClientID))
 	}
 
 	/*

@@ -17,9 +17,9 @@ type (
 		} `json:"crew_coords" validate:"required"`
 
 		// Скорость
-		Speed float64 `json:"speed,omitempty" validate:"omitempty"`
+		Speed *float64 `json:"speed,omitempty" validate:"omitempty"`
 		// Направление движения (0-Север, 90-Восток, 180-Юг, 270-Запад, -1-не задано)
-		Direction int `json:"direction,omitempty" validate:"omitempty"`
+		Direction *int `json:"direction,omitempty" validate:"omitempty"`
 	}
 )
 

@@ -2,6 +2,7 @@ package common_api
 
 import (
 	"net/url"
+	"strconv"
 
 	"github.com/ros-tel/taximaster/validator"
 )
@@ -12,11 +13,11 @@ type (
 		Phone string `validate:"required"`
 
 		// Искать среди телефонов водителей
-		SearchInDriversMobile bool `validate:"omitempty"`
+		SearchInDriversMobile *bool `validate:"omitempty"`
 		// Искать среди телефонов клиентов
-		SearchInClients bool `validate:"omitempty"`
+		SearchInClients *bool `validate:"omitempty"`
 		// Искать в справочнике телефонов
-		SearchInPhones bool `validate:"omitempty"`
+		SearchInPhones *bool `validate:"omitempty"`
 	}
 
 	AnalyzePhoneResponse struct {
@@ -38,14 +39,14 @@ func (cl *Client) AnalyzePhone(req AnalyzePhoneRequest) (response AnalyzePhoneRe
 
 	v := url.Values{}
 	v.Add("phone", req.Phone)
-	if req.SearchInDriversMobile {
-		v.Add("search_in_drivers_mobile", "true")
+	if req.SearchInDriversMobile != nil {
+		v.Add("search_in_drivers_mobile", strconv.FormatBool(*req.SearchInDriversMobile))
 	}
-	if req.SearchInClients {
-		v.Add("search_in_clients", "true")
+	if req.SearchInClients != nil {
+		v.Add("search_in_clients", strconv.FormatBool(*req.SearchInClients))
 	}
-	if req.SearchInPhones {
-		v.Add("search_in_phones", "true")
+	if req.SearchInPhones != nil {
+		v.Add("search_in_phones", strconv.FormatBool(*req.SearchInPhones))
 	}
 
 	/*

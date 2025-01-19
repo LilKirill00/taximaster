@@ -19,23 +19,23 @@ type (
 		Phones string `validate:"required"`
 
 		// ИД группы клиента
-		ClientGroup int `validate:"omitempty"`
+		ClientGroup *int `validate:"omitempty"`
 		// ИД клиента-родителя
-		ParentID int `validate:"omitempty"`
+		ParentID *int `validate:"omitempty"`
 		// Домашний адрес
-		Address string `validate:"omitempty"`
+		Address *string `validate:"omitempty"`
 		// Дата рождения
-		Birthday string `validate:"omitempty,datetime=20060102150405"`
+		Birthday *string `validate:"omitempty,datetime=20060102150405"`
 		// Пол. Может принимать значения:
 		// - male - мужской
 		// - female - женский
-		Gender string `validate:"omitempty,eq=male|eq=female"`
+		Gender *string `validate:"omitempty,eq=male|eq=female"`
 		// E-mail
-		Email string `validate:"omitempty,email"`
+		Email *string `validate:"omitempty,email"`
 		// Использовать E-mail для отправки уведомлений по заказу
 		UseEmailInforming *bool `validate:"omitempty"`
 		// Комментарий
-		Comment string `validate:"omitempty"`
+		Comment *string `validate:"omitempty"`
 		// Использовать собственный счет для оплаты заказов
 		UseOwnAccount *bool `validate:"omitempty"`
 	}
@@ -57,29 +57,29 @@ func (cl *Client) RegisterClient(req RegisterClientRequest) (response RegisterCl
 	v.Add("login", req.Login)
 	v.Add("password", req.Password)
 	v.Add("phones", req.Phones)
-	if req.ClientGroup > 0 {
-		v.Add("client_group", strconv.Itoa(req.ClientGroup))
+	if req.ClientGroup != nil {
+		v.Add("client_group", strconv.Itoa(*req.ClientGroup))
 	}
-	if req.ParentID > 0 {
-		v.Add("parent_id", strconv.Itoa(req.ParentID))
+	if req.ParentID != nil {
+		v.Add("parent_id", strconv.Itoa(*req.ParentID))
 	}
-	if req.Address != "" {
-		v.Add("address", req.Address)
+	if req.Address != nil {
+		v.Add("address", *req.Address)
 	}
-	if req.Birthday != "" {
-		v.Add("birthday", req.Birthday)
+	if req.Birthday != nil {
+		v.Add("birthday", *req.Birthday)
 	}
-	if req.Gender != "" {
-		v.Add("gender", req.Gender)
+	if req.Gender != nil {
+		v.Add("gender", *req.Gender)
 	}
-	if req.Email != "" {
-		v.Add("email", req.Email)
+	if req.Email != nil {
+		v.Add("email", *req.Email)
 	}
 	if req.UseEmailInforming != nil {
 		v.Add("use_email_informing", strconv.FormatBool(*req.UseEmailInforming))
 	}
-	if req.Comment != "" {
-		v.Add("comment", req.Comment)
+	if req.Comment != nil {
+		v.Add("comment", *req.Comment)
 	}
 	if req.UseOwnAccount != nil {
 		v.Add("use_own_account", strconv.FormatBool(*req.UseOwnAccount))

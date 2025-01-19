@@ -10,17 +10,17 @@ import (
 type (
 	GetCurrentOrdersRequest struct {
 		// ИД клиента
-		ClientID int `validate:"omitempty"`
+		ClientID *int `validate:"omitempty"`
 		// ИД сотрудника (только если указан ИД клиента)
-		ClientEmployeeID int `validate:"omitempty"`
+		ClientEmployeeID *int `validate:"omitempty"`
 		// Телефон клиента
-		Phone string `validate:"omitempty,max=30"`
+		Phone *string `validate:"omitempty,max=30"`
 		// ИД экипажа
-		CrewID int `validate:"omitempty"`
+		CrewID *int `validate:"omitempty"`
 		// ИД водителя
-		DriverID int `validate:"omitempty"`
+		DriverID *int `validate:"omitempty"`
 		// Список возвращаемых полей через запятую
-		Fields string `validate:"omitempty"`
+		Fields *string `validate:"omitempty"`
 	}
 
 	GetCurrentOrdersResponse struct {
@@ -176,23 +176,23 @@ func (cl *Client) GetCurrentOrders(req GetCurrentOrdersRequest) (response GetCur
 
 	v := url.Values{}
 
-	if req.ClientID != 0 {
-		v.Add("client_id", strconv.Itoa(req.ClientID))
+	if req.ClientID != nil {
+		v.Add("client_id", strconv.Itoa(*req.ClientID))
 	}
-	if req.ClientEmployeeID != 0 {
-		v.Add("client_employee_id", strconv.Itoa(req.ClientEmployeeID))
+	if req.ClientEmployeeID != nil {
+		v.Add("client_employee_id", strconv.Itoa(*req.ClientEmployeeID))
 	}
-	if req.Phone != "" {
-		v.Add("phone", req.Phone)
+	if req.Phone != nil {
+		v.Add("phone", *req.Phone)
 	}
-	if req.CrewID != 0 {
-		v.Add("crew_id", strconv.Itoa(req.CrewID))
+	if req.CrewID != nil {
+		v.Add("crew_id", strconv.Itoa(*req.CrewID))
 	}
-	if req.DriverID != 0 {
-		v.Add("driver_id", strconv.Itoa(req.DriverID))
+	if req.DriverID != nil {
+		v.Add("driver_id", strconv.Itoa(*req.DriverID))
 	}
-	if req.Fields != "" {
-		v.Add("fields", req.Fields)
+	if req.Fields != nil {
+		v.Add("fields", *req.Fields)
 	}
 
 	/*

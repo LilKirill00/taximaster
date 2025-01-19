@@ -12,9 +12,9 @@ type (
 		Text string `json:"text" validate:"required"`
 
 		// ИД заказа
-		OrderID int `json:"order_id,omitempty" validate:"omitempty"`
+		OrderID *int `json:"order_id,omitempty" validate:"omitempty"`
 		// Массив значений атрибутов
-		AttributeValues []AttributeValue `json:"attribute_values,omitempty" validate:"omitempty"`
+		AttributeValues *[]AttributeValue `json:"attribute_values,omitempty" validate:"omitempty"`
 	}
 )
 

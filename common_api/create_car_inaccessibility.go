@@ -12,9 +12,9 @@ type (
 		StartTime string `json:"start_time" validate:"required,datetime=20060102150405"`
 
 		// Время завершения
-		FinishTime string `json:"finish_time,omitempty" validate:"omitempty,datetime=20060102150405"`
+		FinishTime *string `json:"finish_time,omitempty" validate:"omitempty,datetime=20060102150405"`
 		// Комментарий
-		Comment string `json:"comment,omitempty" validate:"omitempty"`
+		Comment *string `json:"comment,omitempty" validate:"omitempty"`
 	}
 
 	CreateCarInaccessibilityResponse struct {

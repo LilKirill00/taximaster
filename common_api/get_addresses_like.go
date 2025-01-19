@@ -19,11 +19,11 @@ type (
 		Street string `validate:"required"`
 
 		// Часть номера дома. Нужно только если get_houses = true
-		House string `validate:"omitempty"`
+		House *string `validate:"omitempty"`
 		// Город, в котором искать адреса
-		City string `validate:"omitempty"`
+		City *string `validate:"omitempty"`
 		// Максимальное количество адресов в ответе
-		MaxAddressesCount int `validate:"omitempty"`
+		MaxAddressesCount *int `validate:"omitempty"`
 		// Искать адреса в ТМ (по умолчанию = true)
 		SearchInTm *bool `validate:"omitempty"`
 		// Искать адреса в Яндекс (по умолчанию = false)
@@ -81,14 +81,14 @@ func (cl *Client) GetAddressesLike(req GetAddressesLikeRequest) (response GetAdd
 	v.Add("get_points", strconv.FormatBool(req.GetPoints))
 	v.Add("get_houses", strconv.FormatBool(req.GetHouses))
 	v.Add("street", req.Street)
-	if req.House != "" {
-		v.Add("house", req.House)
+	if req.House != nil {
+		v.Add("house", *req.House)
 	}
-	if req.City != "" {
-		v.Add("city", req.City)
+	if req.City != nil {
+		v.Add("city", *req.City)
 	}
-	if req.MaxAddressesCount > 0 {
-		v.Add("max_addresses_count", strconv.Itoa(req.MaxAddressesCount))
+	if req.MaxAddressesCount != nil {
+		v.Add("max_addresses_count", strconv.Itoa(*req.MaxAddressesCount))
 	}
 	if req.SearchInTm != nil {
 		v.Add("search_in_tm", strconv.FormatBool(*req.SearchInTm))

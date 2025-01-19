@@ -14,25 +14,25 @@ type (
 		SourceTime string `json:"source_time" validate:"required,datetime=20060102150405"`
 
 		// Смещение относительно серверного времени
-		ServerTimeOffset int `json:"server_time_offset,omitempty" validate:"omitempty"`
+		ServerTimeOffset *int `json:"server_time_offset,omitempty" validate:"omitempty"`
 		// Пассажир
-		Passenger string `json:"passenger,omitempty" validate:"omitempty"`
+		Passenger *string `json:"passenger,omitempty" validate:"omitempty"`
 		// Телефон для отзвона
-		PhoneToDial string `json:"phone_to_dial,omitempty" validate:"omitempty,max=30"`
+		PhoneToDial *string `json:"phone_to_dial,omitempty" validate:"omitempty,max=30"`
 		// Заказчик
-		Customer string `json:"customer,omitempty" validate:"omitempty"`
+		Customer *string `json:"customer,omitempty" validate:"omitempty"`
 		// Комментарий
-		Comment string `json:"comment,omitempty" validate:"omitempty"`
+		Comment *string `json:"comment,omitempty" validate:"omitempty"`
 		// ИД группы экипажей
-		CrewGroupID int `json:"crew_group_id,omitempty" validate:"omitempty"`
+		CrewGroupID *int `json:"crew_group_id,omitempty" validate:"omitempty"`
 		// ИД службы ЕДС
-		UdsID int `json:"uds_id,omitempty" validate:"omitempty"`
+		UdsID *int `json:"uds_id,omitempty" validate:"omitempty"`
 		// ИД тарифа
-		TariffID int `json:"tariff_id,omitempty" validate:"omitempty"`
+		TariffID *int `json:"tariff_id,omitempty" validate:"omitempty"`
 		// Предварительный заказ
-		IsPrior bool `json:"is_prior,omitempty" validate:"omitempty"`
+		IsPrior *bool `json:"is_prior,omitempty" validate:"omitempty"`
 		// Проверка на дубликат
-		CheckDuplicate bool `json:"check_duplicate,omitempty" validate:"omitempty"`
+		CheckDuplicate *bool `json:"check_duplicate,omitempty" validate:"omitempty"`
 		// Массив услуг. Устарело. Рекомендуется использовать параметр attribute_values
 		Services *[]int `json:"services,omitempty" validate:"omitempty"`
 		// Массив признаков экипажей. Устарело. Рекомендуется использовать параметр attribute_values
@@ -40,29 +40,29 @@ type (
 		// Массив параметров заказа. Устарело. Рекомендуется использовать параметр attribute_values
 		OrderParams *[]int `json:"order_params,omitempty" validate:"omitempty"`
 		// Сумма заказа
-		TotalCost float64 `json:"total_cost,omitempty" validate:"omitempty"`
+		TotalCost *float64 `json:"total_cost,omitempty" validate:"omitempty"`
 		// Оплата по возможности всей суммы заказа с безналичного счета клиента (насколько хватает средств на счете)
-		UseCashless bool `json:"use_cashless,omitempty" validate:"omitempty"`
+		UseCashless *bool `json:"use_cashless,omitempty" validate:"omitempty"`
 		// Оплата по возможности всей суммы заказа с бонусного счета клиента (насколько хватает средств на бонусном счете)
-		UseBonus bool `json:"use_bonus,omitempty" validate:"omitempty"`
+		UseBonus *bool `json:"use_bonus,omitempty" validate:"omitempty"`
 		// Фиксированная сумма оплаты заказа с безналичного счета клиента (не используется, если use_cashless = true)
-		CashlessSum int `json:"cashless_sum,omitempty" validate:"omitempty"`
+		CashlessSum *int `json:"cashless_sum,omitempty" validate:"omitempty"`
 		// Фиксированная сумма оплаты заказа с бонусного счета клиента (не используется, если use_bonus = true)
-		BonusSum int `json:"bonus_sum,omitempty" validate:"omitempty"`
+		BonusSum *int `json:"bonus_sum,omitempty" validate:"omitempty"`
 		// ИД сотрудника клиента (если задан client_id)
-		ClientEmployeeID int `json:"client_employee_id,omitempty" validate:"omitempty"`
+		ClientEmployeeID *int `json:"client_employee_id,omitempty" validate:"omitempty"`
 		// Email для отправки уведомлений
-		Email string `json:"email,omitempty" validate:"omitempty,email"`
+		Email *string `json:"email,omitempty" validate:"omitempty,email"`
 		// Время перехода из предварительного в текущие заказы, мин
-		PriorToCurrentBeforeMinutes int `json:"prior_to_current_before_minutes,omitempty" validate:"omitempty"`
+		PriorToCurrentBeforeMinutes *int `json:"prior_to_current_before_minutes,omitempty" validate:"omitempty"`
 		// Номер рейса
-		FlightNumber string `json:"flight_number,omitempty" validate:"omitempty"`
+		FlightNumber *string `json:"flight_number,omitempty" validate:"omitempty"`
 		// Использовать специальную проверку перед созданием заказа
-		NeedCustomValidate bool `json:"need_custom_validate,omitempty" validate:"omitempty"`
+		NeedCustomValidate *bool `json:"need_custom_validate,omitempty" validate:"omitempty"`
 		// Массив значений атрибутов
 		AttributeValues *[]AttributeValue `json:"attribute_values,omitempty" validate:"omitempty"`
 		// Тип платежной системы ("qr", либо пусто, если не используется)
-		PaymentPaySystem string `json:"payment_pay_system,omitempty" validate:"omitempty"`
+		PaymentPaySystem *string `json:"payment_pay_system,omitempty" validate:"omitempty"`
 	}
 
 	CreateOrder2Response struct {

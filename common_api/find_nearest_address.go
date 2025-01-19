@@ -15,7 +15,7 @@ type (
 		Lon float64 `validate:"required"`
 
 		// Радиус в метрах
-		Radius int `validate:"omitempty"`
+		Radius *int `validate:"omitempty"`
 		// Искать адреса в ТМ (по умолчанию = true)
 		SearchInTm *bool `validate:"omitempty"`
 		// Искать адреса в Яндекс (по умолчанию = false)
@@ -71,8 +71,8 @@ func (cl *Client) FindNearestAddress(req FindNearestAddressRequest) (response Fi
 	v := url.Values{}
 	v.Add("lat", strconv.FormatFloat(req.Lat, 'g', -1, 64))
 	v.Add("lon", strconv.FormatFloat(req.Lon, 'g', -1, 64))
-	if req.Radius != 0 {
-		v.Add("radius", strconv.Itoa(req.Radius))
+	if req.Radius != nil {
+		v.Add("radius", strconv.Itoa(*req.Radius))
 	}
 	if req.SearchInTm != nil {
 		v.Add("search_in_tm", strconv.FormatBool(*req.SearchInTm))

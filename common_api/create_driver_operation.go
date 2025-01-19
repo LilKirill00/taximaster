@@ -14,13 +14,13 @@ type (
 		OperType string `json:"oper_type" validate:"required,eq=receipt|eq=expense"`
 
 		// Наименование операции
-		Name string `json:"name,omitempty" validate:"omitempty"`
+		Name *string `json:"name,omitempty" validate:"omitempty"`
 		// Время создания операции (если не задано, текущее)  !! Не используется с ТМ 3.7
-		OperTime string `json:"oper_time,omitempty" validate:"omitempty,datetime=20060102150405"`
+		OperTime *string `json:"oper_time,omitempty" validate:"omitempty,datetime=20060102150405"`
 		// Комментарий
-		Comment string `json:"comment,omitempty" validate:"omitempty"`
+		Comment *string `json:"comment,omitempty" validate:"omitempty"`
 		// ИД типа счета (0 - основной счет), по умолчанию 0
-		AccountKind int `json:"account_kind,omitempty" validate:"omitempty,min=0"`
+		AccountKind *int `json:"account_kind,omitempty" validate:"omitempty,min=0"`
 	}
 
 	CreateDriverOperationResponse struct {

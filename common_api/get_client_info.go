@@ -14,7 +14,7 @@ type (
 
 		// Список возвращаемых полей через запятую.
 		// Для полей списка сотрудников, запрашиваемого клиента, названия начинаются с "employees.", например: "employees.name"
-		Fields string `validate:"omitempty"`
+		Fields *string `validate:"omitempty"`
 	}
 
 	GetClientInfoResponse struct {
@@ -165,8 +165,8 @@ func (cl *Client) GetClientInfo(req GetClientInfoRequest) (response GetClientInf
 
 	v := url.Values{}
 	v.Add("client_id", strconv.Itoa(req.ClientID))
-	if req.Fields != "" {
-		v.Add("fields", req.Fields)
+	if req.Fields != nil {
+		v.Add("fields", *req.Fields)
 	}
 
 	/*

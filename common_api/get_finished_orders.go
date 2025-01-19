@@ -16,25 +16,25 @@ type (
 		FinishTime string `validate:"required,datetime=20060102150405"`
 
 		// ИД клиента
-		ClientID int `validate:"omitempty"`
+		ClientID *int `validate:"omitempty"`
 		// ИД сотрудника (только если указан ИД клиента)
-		ClientEmployeeID int `validate:"omitempty"`
+		ClientEmployeeID *int `validate:"omitempty"`
 		// Телефон клиента
-		Phone string `validate:"omitempty,max=30"`
+		Phone *string `validate:"omitempty,max=30"`
 		// ИД экипажа
-		CrewID int `validate:"omitempty"`
+		CrewID *int `validate:"omitempty"`
 		// ИД водителя
-		DriverID int `validate:"omitempty"`
+		DriverID *int `validate:"omitempty"`
 		// Тип состояния заказа
 		// Может принимать значения:
 		// - "all" - все
 		// - "finished" - выполненные
 		// - "aborted" - прекращенные
-		StateType string `validate:"omitempty,eq=all|eq=finished|eq=aborted"`
+		StateType *string `validate:"omitempty,eq=all|eq=finished|eq=aborted"`
 		// Список ИД состояний заказа, пример: []int{1, 2, 3}
-		StateIDs []int `validate:"omitempty"`
+		StateIDs *[]int `validate:"omitempty"`
 		// Список возвращаемых полей через запятую
-		Fields string `validate:"omitempty"`
+		Fields *string `validate:"omitempty"`
 	}
 
 	GetFinishedOrdersResponse struct {
@@ -174,35 +174,37 @@ func (cl *Client) GetFinishedOrders(req GetFinishedOrdersRequest) (response GetF
 
 	v.Add("start_time", req.StartTime)
 	v.Add("finish_time", req.FinishTime)
-	if req.ClientID != 0 {
-		v.Add("client_id", strconv.Itoa(req.ClientID))
+	if req.ClientID != nil {
+		v.Add("client_id", strconv.Itoa(*req.ClientID))
 	}
-	if req.ClientEmployeeID != 0 {
-		v.Add("client_employee_id", strconv.Itoa(req.ClientEmployeeID))
+	if req.ClientEmployeeID != nil {
+		v.Add("client_employee_id", strconv.Itoa(*req.ClientEmployeeID))
 	}
-	if req.Phone != "" {
-		v.Add("phone", req.Phone)
+	if req.Phone != nil {
+		v.Add("phone", *req.Phone)
 	}
-	if req.CrewID != 0 {
-		v.Add("crew_id", strconv.Itoa(req.CrewID))
+	if req.CrewID != nil {
+		v.Add("crew_id", strconv.Itoa(*req.CrewID))
 	}
-	if req.DriverID != 0 {
-		v.Add("driver_id", strconv.Itoa(req.DriverID))
+	if req.DriverID != nil {
+		v.Add("driver_id", strconv.Itoa(*req.DriverID))
 	}
-	if req.StateType != "" {
-		v.Add("state_type", req.StateType)
+	if req.StateType != nil {
+		v.Add("state_type", *req.StateType)
 	}
-	if len(req.StateIDs) != 0 {
-		stringSlice := make([]string, len(req.StateIDs))
+	if req.StateIDs != nil {
+		if len(*req.StateIDs) != 0 {
+			stringSlice := make([]string, len(*req.StateIDs))
 
-		for i, num := range req.StateIDs {
-			stringSlice[i] = strconv.Itoa(num)
+			for i, num := range *req.StateIDs {
+				stringSlice[i] = strconv.Itoa(num)
+			}
+
+			v.Add("state_ids", strings.Join(stringSlice, ";"))
 		}
-
-		v.Add("state_ids", strings.Join(stringSlice, ";"))
 	}
-	if req.Fields != "" {
-		v.Add("fields", req.Fields)
+	if req.Fields != nil {
+		v.Add("fields", *req.Fields)
 	}
 
 	err = cl.Get("get_finished_orders", nil, v, &response)

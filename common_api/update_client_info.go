@@ -13,31 +13,31 @@ type (
 		ClientID int `validate:"required"`
 
 		// ФИО
-		Name string `validate:"omitempty,max=60"`
+		Name *string `validate:"omitempty,max=60"`
 		// Логин
-		Login string `validate:"omitempty,max=60"`
+		Login *string `validate:"omitempty,max=60"`
 		// Пароль
-		Password string `validate:"omitempty,max=60"`
+		Password *string `validate:"omitempty,max=60"`
 		// Номера телефонов (через запятую)
-		Phones string `validate:"omitempty"`
+		Phones *string `validate:"omitempty"`
 		// Домашний адрес
-		Address string `validate:"omitempty"`
+		Address *string `validate:"omitempty"`
 		// Дата рождения
-		Birthday string `validate:"omitempty,datetime=20060102150405"`
+		Birthday *string `validate:"omitempty,datetime=20060102150405"`
 		// Пол. Может принимать значения:
 		// - male - мужской
 		// - female - женский
-		Gender string `validate:"omitempty,eq=male|eq=female"`
+		Gender *string `validate:"omitempty,eq=male|eq=female"`
 		// ИД клиента-родителя
-		ParentID int `validate:"omitempty"`
+		ParentID *int `validate:"omitempty"`
 		// ИД группы клиента
-		ClientGroupID int `validate:"omitempty"`
+		ClientGroupID *int `validate:"omitempty"`
 		// E-mail
-		Email string `validate:"omitempty,email"`
+		Email *string `validate:"omitempty,email"`
 		// Использовать E-mail для отправки уведомлений по заказу
 		UseEmailInforming *bool `validate:"omitempty"`
 		// Комментарий
-		Comment string `validate:"omitempty"`
+		Comment *string `validate:"omitempty"`
 		// Использовать собственный счет для оплаты заказов
 		UseOwnAccount *bool `validate:"omitempty"`
 	}
@@ -53,41 +53,41 @@ func (cl *Client) UpdateClientInfo(req UpdateClientInfoRequest) (response EmptyR
 	v := url.Values{}
 	v.Add("client_id", strconv.Itoa(req.ClientID))
 
-	if req.Name != "" {
-		v.Add("name", req.Name)
+	if req.Name != nil {
+		v.Add("name", *req.Name)
 	}
-	if req.Login != "" {
-		v.Add("login", req.Login)
+	if req.Login != nil {
+		v.Add("login", *req.Login)
 	}
-	if req.Password != "" {
-		v.Add("password", req.Password)
+	if req.Password != nil {
+		v.Add("password", *req.Password)
 	}
-	if req.Phones != "" {
-		v.Add("phones", req.Phones)
+	if req.Phones != nil {
+		v.Add("phones", *req.Phones)
 	}
-	if req.ClientGroupID > 0 {
-		v.Add("client_group_id", strconv.Itoa(req.ClientGroupID))
+	if req.ClientGroupID != nil {
+		v.Add("client_group_id", strconv.Itoa(*req.ClientGroupID))
 	}
-	if req.ParentID > 0 {
-		v.Add("parent_id", strconv.Itoa(req.ParentID))
+	if req.ParentID != nil {
+		v.Add("parent_id", strconv.Itoa(*req.ParentID))
 	}
-	if req.Address != "" {
-		v.Add("address", req.Address)
+	if req.Address != nil {
+		v.Add("address", *req.Address)
 	}
-	if req.Birthday != "" {
-		v.Add("birthday", req.Birthday)
+	if req.Birthday != nil {
+		v.Add("birthday", *req.Birthday)
 	}
-	if req.Gender != "" {
-		v.Add("gender", req.Gender)
+	if req.Gender != nil {
+		v.Add("gender", *req.Gender)
 	}
-	if req.Email != "" {
-		v.Add("email", req.Email)
+	if req.Email != nil {
+		v.Add("email", *req.Email)
 	}
 	if req.UseEmailInforming != nil {
 		v.Add("use_email_informing", strconv.FormatBool(*req.UseEmailInforming))
 	}
-	if req.Comment != "" {
-		v.Add("comment", req.Comment)
+	if req.Comment != nil {
+		v.Add("comment", *req.Comment)
 	}
 	if req.UseOwnAccount != nil {
 		v.Add("use_own_account", strconv.FormatBool(*req.UseOwnAccount))

@@ -5,9 +5,9 @@ import "github.com/ros-tel/taximaster/validator"
 type (
 	CreateDriverDynPriorityRequest struct {
 		// ИД водителя (должно быть что-то одно: либо driver_id, либо crew_id)
-		DriverID int `json:"driver_id,omitempty" validate:"omitempty"`
+		DriverID *int `json:"driver_id,omitempty" validate:"omitempty"`
 		// ИД экипажа (должно быть что-то одно: либо driver_id, либо crew_id)
-		CrewID int `json:"crew_id,omitempty" validate:"omitempty"`
+		CrewID *int `json:"crew_id,omitempty" validate:"omitempty"`
 		// Приоритет
 		Priority int `json:"priority" validate:"required"`
 		// Время начала действия приоритета

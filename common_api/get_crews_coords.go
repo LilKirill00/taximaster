@@ -10,7 +10,7 @@ import (
 type (
 	GetCrewsCoordsRequest struct {
 		// ИД экипажа, по которому нужно вернуть координаты. Если не задано, то будут возвращены координаты всех экипажей на линии
-		CrewID int `validate:"omitempty"`
+		CrewID *int `validate:"omitempty"`
 	}
 
 	GetCrewsCoordsResponse struct {
@@ -48,8 +48,8 @@ func (cl *Client) GetCrewsCoords(req GetCrewsCoordsRequest) (response GetCrewsCo
 	}
 
 	v := url.Values{}
-	if req.CrewID != 0 {
-		v.Add("crew_id", strconv.Itoa(req.CrewID))
+	if req.CrewID != nil {
+		v.Add("crew_id", strconv.Itoa(*req.CrewID))
 	}
 
 	/*

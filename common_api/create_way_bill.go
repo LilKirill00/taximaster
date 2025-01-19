@@ -19,9 +19,9 @@ type (
 		CarID int `validate:"required"`
 
 		// Номер путевого листа
-		Number string `validate:"omitempty"`
+		Number *string `validate:"omitempty"`
 		// Комментарий
-		Comment string `validate:"omitempty"`
+		Comment *string `validate:"omitempty"`
 	}
 
 	CreateWayBillResponse struct {
@@ -42,11 +42,11 @@ func (cl *Client) CreateWayBill(req CreateWayBillRequest) (response CreateWayBil
 	v.Add("finish_time", req.FinishTime)
 	v.Add("driver_id", strconv.Itoa(req.DriverID))
 	v.Add("car_id", strconv.Itoa(req.CarID))
-	if req.Number != "" {
-		v.Add("number", req.Number)
+	if req.Number != nil {
+		v.Add("number", *req.Number)
 	}
-	if req.Comment != "" {
-		v.Add("comment", req.Comment)
+	if req.Comment != nil {
+		v.Add("comment", *req.Comment)
 	}
 
 	/*

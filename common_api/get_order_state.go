@@ -13,7 +13,7 @@ type (
 		OrderID int `validate:"required"`
 
 		// Список возвращаемых полей через запятую
-		Fields string `validate:"omitempty"`
+		Fields *string `validate:"omitempty"`
 	}
 
 	GetOrderStateResponse struct {
@@ -181,8 +181,8 @@ func (cl *Client) GetOrderState(req GetOrderStateRequest) (response GetOrderStat
 
 	v := url.Values{}
 	v.Add("order_id", strconv.Itoa(req.OrderID))
-	if req.Fields != "" {
-		v.Add("fields", req.Fields)
+	if req.Fields != nil {
+		v.Add("fields", *req.Fields)
 	}
 
 	/*

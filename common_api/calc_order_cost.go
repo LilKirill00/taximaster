@@ -14,43 +14,43 @@ type (
 		TariffID int `validate:"required"`
 
 		// Время подачи
-		SourceTime string `validate:"omitempty,datetime=20060102150405"`
+		SourceTime *string `validate:"omitempty,datetime=20060102150405"`
 		// Предварительный заказ
 		IsPrior *bool `validate:"omitempty"`
 		// ИД клиента
-		ClientID int `validate:"omitempty"`
+		ClientID *int `validate:"omitempty"`
 		// ИД сотрудника клиента
-		ClientEmployeeID int `validate:"omitempty"`
+		ClientEmployeeID *int `validate:"omitempty"`
 		// ИД скидки
-		DiscountID int `validate:"omitempty"`
+		DiscountID *int `validate:"omitempty"`
 		// ИД дисконтной карты
-		DiscCardID int `validate:"omitempty"`
+		DiscCardID *int `validate:"omitempty"`
 		// ИД района подачи
-		SourceZoneID int `validate:"omitempty"`
+		SourceZoneID *int `validate:"omitempty"`
 		// ИД района назначения
-		DestZoneID int `validate:"omitempty"`
+		DestZoneID *int `validate:"omitempty"`
 		// Километраж по городу
-		DistanceCity float64 `validate:"omitempty"`
+		DistanceCity *float64 `validate:"omitempty"`
 		// Километраж за городом
-		DistanceCountry float64 `validate:"omitempty"`
+		DistanceCountry *float64 `validate:"omitempty"`
 		// Километраж до подачи за городом
-		SourceDistanceCountry float64 `validate:"omitempty"`
+		SourceDistanceCountry *float64 `validate:"omitempty"`
 		// Загородный заказ
 		IsCountry *bool `validate:"omitempty"`
 		// Время ожидания посадки клиента в минутах
-		WaitingMinutes int `validate:"omitempty"`
+		WaitingMinutes *int `validate:"omitempty"`
 		// Почасовой заказ
 		IsHourly *bool `validate:"omitempty"`
 		// Длительность почасового заказа в минутах
-		HourlyMinutes int `validate:"omitempty"`
+		HourlyMinutes *int `validate:"omitempty"`
 		// Призовой заказ
 		IsPrize *bool `validate:"omitempty"`
 		// Обратный путь за городом
 		BackWay *bool `validate:"omitempty"`
 		// Список ИД услуг, пример: []int{1, 2, 3} Устарело. Рекомендуется использовать параметр order_params.
-		Services []int `validate:"omitempty"`
+		Services *[]int `validate:"omitempty"`
 		// Список ИД параметров заказа, пример: []int{1, 2, 3}
-		OrderParams []int `validate:"omitempty"`
+		OrderParams *[]int `validate:"omitempty"`
 		// Признак безналичного заказа
 		Cashless *bool `validate:"omitempty"`
 	}
@@ -77,53 +77,53 @@ func (cl *Client) CalcOrderCost(req CalcOrderCostRequest) (response CalcOrderCos
 
 	v := url.Values{}
 	v.Add("tariff_id", strconv.Itoa(req.TariffID))
-	if req.SourceTime != "" {
-		v.Add("source_time", req.SourceTime)
+	if req.SourceTime != nil {
+		v.Add("source_time", *req.SourceTime)
 	}
 	if req.IsPrior != nil {
 		v.Add("is_prior", strconv.FormatBool(*req.IsPrior))
 	}
-	if req.SourceTime != "" {
-		v.Add("source_time", req.SourceTime)
+	if req.SourceTime != nil {
+		v.Add("source_time", *req.SourceTime)
 	}
-	if req.ClientID != 0 {
-		v.Add("client_id", strconv.Itoa(req.ClientID))
+	if req.ClientID != nil {
+		v.Add("client_id", strconv.Itoa(*req.ClientID))
 	}
-	if req.ClientEmployeeID != 0 {
-		v.Add("client_employee_id", strconv.Itoa(req.ClientEmployeeID))
+	if req.ClientEmployeeID != nil {
+		v.Add("client_employee_id", strconv.Itoa(*req.ClientEmployeeID))
 	}
-	if req.DiscountID != 0 {
-		v.Add("discount_id", strconv.Itoa(req.DiscountID))
+	if req.DiscountID != nil {
+		v.Add("discount_id", strconv.Itoa(*req.DiscountID))
 	}
-	if req.DiscCardID != 0 {
-		v.Add("disc_card_id", strconv.Itoa(req.DiscCardID))
+	if req.DiscCardID != nil {
+		v.Add("disc_card_id", strconv.Itoa(*req.DiscCardID))
 	}
-	if req.SourceZoneID != 0 {
-		v.Add("source_zone_id", strconv.Itoa(req.SourceZoneID))
+	if req.SourceZoneID != nil {
+		v.Add("source_zone_id", strconv.Itoa(*req.SourceZoneID))
 	}
-	if req.DestZoneID != 0 {
-		v.Add("dest_zone_id", strconv.Itoa(req.DestZoneID))
+	if req.DestZoneID != nil {
+		v.Add("dest_zone_id", strconv.Itoa(*req.DestZoneID))
 	}
-	if req.DistanceCity != 0 {
-		v.Add("distance_city", strconv.FormatFloat(req.DistanceCity, 'g', -1, 64))
+	if req.DistanceCity != nil {
+		v.Add("distance_city", strconv.FormatFloat(*req.DistanceCity, 'g', -1, 64))
 	}
-	if req.DistanceCountry != 0 {
-		v.Add("distance_country", strconv.FormatFloat(req.DistanceCountry, 'g', -1, 64))
+	if req.DistanceCountry != nil {
+		v.Add("distance_country", strconv.FormatFloat(*req.DistanceCountry, 'g', -1, 64))
 	}
-	if req.SourceDistanceCountry != 0 {
-		v.Add("source_distance_country", strconv.FormatFloat(req.SourceDistanceCountry, 'g', -1, 64))
+	if req.SourceDistanceCountry != nil {
+		v.Add("source_distance_country", strconv.FormatFloat(*req.SourceDistanceCountry, 'g', -1, 64))
 	}
 	if req.IsCountry != nil {
 		v.Add("is_country", strconv.FormatBool(*req.IsCountry))
 	}
-	if req.WaitingMinutes != 0 {
-		v.Add("waiting_minutes", strconv.Itoa(req.WaitingMinutes))
+	if req.WaitingMinutes != nil {
+		v.Add("waiting_minutes", strconv.Itoa(*req.WaitingMinutes))
 	}
 	if req.IsHourly != nil {
 		v.Add("is_hourly", strconv.FormatBool(*req.IsHourly))
 	}
-	if req.HourlyMinutes != 0 {
-		v.Add("hourly_minutes", strconv.Itoa(req.HourlyMinutes))
+	if req.HourlyMinutes != nil {
+		v.Add("hourly_minutes", strconv.Itoa(*req.HourlyMinutes))
 	}
 	if req.IsPrize != nil {
 		v.Add("is_prize", strconv.FormatBool(*req.IsPrize))
@@ -131,23 +131,27 @@ func (cl *Client) CalcOrderCost(req CalcOrderCostRequest) (response CalcOrderCos
 	if req.BackWay != nil {
 		v.Add("back_way", strconv.FormatBool(*req.BackWay))
 	}
-	if len(req.Services) != 0 {
-		stringSlice := make([]string, len(req.Services))
+	if req.Services != nil {
+		if len(*req.Services) != 0 {
+			stringSlice := make([]string, len(*req.Services))
 
-		for i, num := range req.Services {
-			stringSlice[i] = strconv.Itoa(num)
+			for i, num := range *req.Services {
+				stringSlice[i] = strconv.Itoa(num)
+			}
+
+			v.Add("services", strings.Join(stringSlice, ";"))
 		}
-
-		v.Add("services", strings.Join(stringSlice, ";"))
 	}
-	if len(req.OrderParams) != 0 {
-		stringSlice := make([]string, len(req.OrderParams))
+	if req.OrderParams != nil {
+		if len(*req.OrderParams) != 0 {
+			stringSlice := make([]string, len(*req.OrderParams))
 
-		for i, num := range req.Services {
-			stringSlice[i] = strconv.Itoa(num)
+			for i, num := range *req.Services {
+				stringSlice[i] = strconv.Itoa(num)
+			}
+
+			v.Add("order_params", strings.Join(stringSlice, ";"))
 		}
-
-		v.Add("order_params", strings.Join(stringSlice, ";"))
 	}
 	if req.Cashless != nil {
 		v.Add("cashless", strconv.FormatBool(*req.Cashless))

@@ -10,11 +10,11 @@ type (
 		Name string `json:"name" validate:"required"`
 
 		// E-mail
-		Email string `json:"email,omitempty" validate:"omitempty,email"`
+		Email *string `json:"email,omitempty" validate:"omitempty,email"`
 		// Использовать E-mail для отправки уведомлений по заказу
-		UseEmailInforming bool `json:"use_email_informing,omitempty" validate:"omitempty"`
+		UseEmailInforming *bool `json:"use_email_informing,omitempty" validate:"omitempty"`
 		// Массив телефонов сотрудника
-		Phones []Phone `json:"phones,omitempty" validate:"omitempty"`
+		Phones *[]Phone `json:"phones,omitempty" validate:"omitempty"`
 	}
 )
 

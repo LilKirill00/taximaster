@@ -13,17 +13,17 @@ type (
 		WayBillID int `validate:"required"`
 
 		// Время начала
-		StartTime string `validate:"omitempty,datetime=20060102150405"`
+		StartTime *string `validate:"omitempty,datetime=20060102150405"`
 		// Время завершения
-		FinishTime string `validate:"omitempty,datetime=20060102150405"`
+		FinishTime *string `validate:"omitempty,datetime=20060102150405"`
 		// ИД водителя
-		DriverID int `validate:"omitempty"`
+		DriverID *int `validate:"omitempty"`
 		// ИД автомобиля
-		CarID int `validate:"omitempty"`
+		CarID *int `validate:"omitempty"`
 		// Номер путевого листа
-		Number string `validate:"omitempty"`
+		Number *string `validate:"omitempty"`
 		// Комментарий
-		Comment string `validate:"omitempty"`
+		Comment *string `validate:"omitempty"`
 	}
 )
 
@@ -37,23 +37,23 @@ func (cl *Client) UpdateWayBillInfo(req UpdateWayBillInfoRequest) (response Empt
 	v := url.Values{}
 	v.Add("way_bill_id", strconv.Itoa(req.WayBillID))
 
-	if req.StartTime != "" {
-		v.Add("start_time", req.StartTime)
+	if req.StartTime != nil {
+		v.Add("start_time", *req.StartTime)
 	}
-	if req.FinishTime != "" {
-		v.Add("finish_time", req.FinishTime)
+	if req.FinishTime != nil {
+		v.Add("finish_time", *req.FinishTime)
 	}
-	if req.DriverID > 0 {
-		v.Add("driver_id", strconv.Itoa(req.DriverID))
+	if req.DriverID != nil {
+		v.Add("driver_id", strconv.Itoa(*req.DriverID))
 	}
-	if req.CarID > 0 {
-		v.Add("car_id", strconv.Itoa(req.CarID))
+	if req.CarID != nil {
+		v.Add("car_id", strconv.Itoa(*req.CarID))
 	}
-	if req.Number != "" {
-		v.Add("number", req.Number)
+	if req.Number != nil {
+		v.Add("number", *req.Number)
 	}
-	if req.Comment != "" {
-		v.Add("comment", req.Comment)
+	if req.Comment != nil {
+		v.Add("comment", *req.Comment)
 	}
 
 	/*

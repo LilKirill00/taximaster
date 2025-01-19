@@ -13,11 +13,11 @@ type (
 		FixedDriverShiftID int `validate:"required"`
 
 		// ИД водителя
-		DriverID int `validate:"omitempty"`
+		DriverID *int `validate:"omitempty"`
 		// Время начала
-		StartTime string `validate:"omitempty,datetime=20060102150405"`
+		StartTime *string `validate:"omitempty,datetime=20060102150405"`
 		// Время завершения
-		FinishTime string `validate:"omitempty,datetime=20060102150405"`
+		FinishTime *string `validate:"omitempty,datetime=20060102150405"`
 	}
 )
 
@@ -31,14 +31,14 @@ func (cl *Client) UpdateFixedDriverShiftInfo(req UpdateFixedDriverShiftInfoReque
 	v := url.Values{}
 	v.Add("fixed_driver_shift_id", strconv.Itoa(req.FixedDriverShiftID))
 
-	if req.DriverID > 0 {
-		v.Add("driver_id", strconv.Itoa(req.DriverID))
+	if req.DriverID != nil {
+		v.Add("driver_id", strconv.Itoa(*req.DriverID))
 	}
-	if req.StartTime != "" {
-		v.Add("start_time", req.StartTime)
+	if req.StartTime != nil {
+		v.Add("start_time", *req.StartTime)
 	}
-	if req.FinishTime != "" {
-		v.Add("finish_time", req.FinishTime)
+	if req.FinishTime != nil {
+		v.Add("finish_time", *req.FinishTime)
 	}
 
 	/*

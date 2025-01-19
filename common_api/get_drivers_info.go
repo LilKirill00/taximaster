@@ -14,7 +14,7 @@ type (
 		// Включить в ответ запроса уволенных водителей
 		DismissedDrivers *bool `validate:"omitempty"`
 		// Список возвращаемых полей через запятую
-		Fields string `validate:"omitempty"`
+		Fields *string `validate:"omitempty"`
 	}
 
 	GetDriversInfoResponse struct {
@@ -37,8 +37,8 @@ func (cl *Client) GetDriversInfo(req GetDriversInfoRequest) (response GetDrivers
 	if req.DismissedDrivers != nil {
 		v.Add("dismissed_drivers", strconv.FormatBool(*req.DismissedDrivers))
 	}
-	if req.Fields != "" {
-		v.Add("fields", req.Fields)
+	if req.Fields != nil {
+		v.Add("fields", *req.Fields)
 	}
 
 	err = cl.Get("get_drivers_info", nil, v, &response)
